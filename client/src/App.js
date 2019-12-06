@@ -12,6 +12,7 @@ import {
 import IndexNavbar from './components/Navbar';
 import IndexHeader from './components/Header';
 import LandingMenu from './components/LandingFoodMenu';
+import LandingReviews from './components/LandingUserReviews';
 
 class App extends React.Component {
   state = {
@@ -46,6 +47,7 @@ class App extends React.Component {
         <header className="App-header">
           <IndexHeader></IndexHeader>
           <LandingMenu></LandingMenu>
+          <LandingReviews></LandingReviews>
           <Badge color="success" pill>{this.state.username}</Badge>{" "}
           <form>
             <FormGroup>

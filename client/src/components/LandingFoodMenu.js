@@ -5,7 +5,7 @@ import { Card, CardImg, CardBody, CardTitle, CardText, Button } from 'reactstrap
 
 const componentStyle = {
     maxHeight : "130vh",
-    minHeight : "900px",
+    minHeight : "max-content",
     backgroundColor : "rgba(255, 213, 97, 1)",
     width : "100vw",
     padding: "50px"
