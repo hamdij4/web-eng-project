@@ -2,7 +2,7 @@ const mongojs = require('mongojs')
 const express = require('express')
 const app = express()
 const jwt = require('jsonwebtoken')
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 4201 || 3001;
 const path = require('path')
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())

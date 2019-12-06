@@ -9,6 +9,9 @@ import {
   FormText,
   Button
 } from "reactstrap";
+import IndexNavbar from './components/Navbar';
+import IndexHeader from './components/Header';
+import LandingMenu from './components/LandingFoodMenu';
 
 class App extends React.Component {
   state = {
@@ -39,7 +42,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+      <IndexNavbar></IndexNavbar>
         <header className="App-header">
+          <IndexHeader></IndexHeader>
+          <LandingMenu></LandingMenu>
           <Badge color="success" pill>{this.state.username}</Badge>{" "}
           <form>
             <FormGroup>
@@ -48,7 +54,7 @@ class App extends React.Component {
               onChange={this.updateField.bind(this)}/>
               <Button className="btn-round" color="primary" style={{margin: "10px"}} type="button" onClick={this.handleForm}>
                 Search
-</Button>
+        </Button>
             </FormGroup>
           </form>
           <img src={logo} className="App-logo" alt="logo" />
