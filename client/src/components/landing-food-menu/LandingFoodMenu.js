@@ -28,7 +28,7 @@ function LandingMenu() {
                 <Container>
                     <Row >
                         <Col xs={12} sm = {12} lg={4} md={4}><Card style={cardStyle, {marginBottom: "30px"}}>
-                            <CardImg top src={require("../assets/img/Hamburger.jpg")} alt="..." />
+                            <CardImg top src={require("../../assets/img/Hamburger.jpg")} alt="..." />
                             <CardTitle>
                                 Hamburger XL
                             </CardTitle>
@@ -39,7 +39,7 @@ function LandingMenu() {
                         </Card>
                         </Col>
                         <Col xs={12} sm = {12} lg={4} md={4}><Card style={cardStyle, {marginBottom: "30px"}}>
-                            <CardImg top src={require("../assets/img/Hamburger.jpg")} alt="..." />
+                            <CardImg top src={require("../../assets/img/Hamburger.jpg")} alt="..." />
                             <CardTitle>
                                 Hamburger S
                             </CardTitle>
@@ -50,7 +50,7 @@ function LandingMenu() {
                         </Card>
                         </Col>
                         <Col xs={12} sm = {12} lg={4} md={4}><Card  style={cardStyle, {marginBottom: "30px"}}>
-                            <CardImg top src={require("../assets/img/Hamburger.jpg")} alt="..." />
+                            <CardImg top src={require("../../assets/img/Hamburger.jpg")} alt="..." />
                             <CardTitle>
                                 Hamburger Kids
                             </CardTitle>
@@ -63,7 +63,7 @@ function LandingMenu() {
                     </Row>
                     <Row style={{marginTop: "20px"}}>
                         <Col xs={12} sm = {12} lg={4} md={4}><Card  style={cardStyle, {marginBottom: "30px"}}>
-                            <CardImg top src={require("../assets/img/Doner.jpg")} alt="..." />
+                            <CardImg top src={require("../../assets/img/Doner.jpg")} alt="..." />
                             <CardTitle>
                                 Doner Large
                             </CardTitle>
@@ -74,7 +74,7 @@ function LandingMenu() {
                         </Card>
                         </Col>
                         <Col xs={12} sm = {12} lg={4} md={4}><Card  style={cardStyle, {marginBottom: "30px"}}>
-                            <CardImg top src={require("../assets/img/Doner.jpg")} alt="..." />
+                            <CardImg top src={require("../../assets/img/Doner.jpg")} alt="..." />
                             <CardTitle>
                                 Doner Medium
                             </CardTitle>
@@ -85,7 +85,7 @@ function LandingMenu() {
                         </Card>
                         </Col>
                         <Col xs={12} sm = {12} lg={4} md={4}><Card  style={cardStyle, {marginBottom: "30px"}}>
-                            <CardImg top src={require("../assets/img/Doner.jpg")} alt="..." />
+                            <CardImg top src={require("../../assets/img/Doner.jpg")} alt="..." />
                             <CardTitle>
                                 Doner Kids
                             </CardTitle>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import IndexNavbar from './components/Navbar';
-import LoginScreen from './components/Login';
-import RegisterScreen from './components/Register'
+import IndexNavbar from './components/navbar/Navbar';
+import LoginScreen from './pages/login/Login';
+import RegisterScreen from './pages/register/Register'
 import {BrowserRouter as Router,
         Switch, Route} from 'react-router-dom'
-import LandingPage from './components/Landing';
+import LandingPage from './pages/landing/Landing';
 class App extends React.Component {
   state = {
     username: null,

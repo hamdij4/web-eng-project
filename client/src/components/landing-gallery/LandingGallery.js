@@ -2,12 +2,12 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 import Image from 'react-bootstrap/Image';
-import Woki from '../assets/img/Woki.jpg';
-import Amerikanac from '../assets/img/Amerikanac.jpg'
-import IChicken from '../assets/img/IChicken.jpg'
-import Montana from '../assets/img/Montana.jpg'
-import Klopa from '../assets/img/Klopa.jpg'
-import Zeljo from '../assets/img/Zeljo.jpg'
+import Woki from '../../assets/img/Woki.jpg';
+import Amerikanac from '../../assets/img/Amerikanac.jpg'
+import IChicken from '../../assets/img/IChicken.jpg'
+import Montana from '../../assets/img/Montana.jpg'
+import Klopa from '../../assets/img/Klopa.jpg'
+import Zeljo from '../../assets/img/Zeljo.jpg'
 
 const componentStyle = {
     maxHeight: "max-content",

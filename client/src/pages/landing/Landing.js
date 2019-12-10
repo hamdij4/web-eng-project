@@ -8,10 +8,10 @@ import {
   FormText,
   Button
 } from "reactstrap";
-import IndexHeader from '../components/header/Header';
-import LandingMenu from '../components/landing-food-menu/LandingFoodMenu';
-import LandingReviews from '../components/landing-user-reviews/LandingUserReviews';
-import LandingGallery from '../components/landing-gallery/LandingGallery';
+import IndexHeader from '../../components/header/Header';
+import LandingReviews from '../../components/landing-user-reviews/LandingUserReviews';
+import LandingGallery from '../../components/landing-gallery/LandingGallery';
+import LandingMenu from '../../components/landing-food-menu/LandingFoodMenu';
 
 function LandingPage() {
 
