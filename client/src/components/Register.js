@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 const formContainer = {
-    backgroundColor: "rgba(245, 185, 66, 0.75)",
+    backgroundColor: "rgba(255, 89, 33, 0.75)",
     height: "max-content",
     width: "max-content",
     borderRadius : "5px",
@@ -15,25 +15,31 @@ const lableStyle = {
 const fieldStyle = {
     marginBottom: "10px"
 }
-function LoginScreen() {
+function RegisterScreen() {
     return (
         <>
         <div
         className="page-header section-dark"
         style={{
           backgroundImage:
-            "url(" + require("../assets/img/HamburgerLogin.jpg") + ")", backgroundSize: "cover"}}>
-                <div className="filter"/>
-                <div className="form-container" style={{zIndex: "100"}}>
+            "url(" + require("../assets/img/FrenchFries.jpg") + ")", backgroundSize: "cover"}}>
+                <div className="filter" />
+                <div className="form-container" style={{zIndex : "100"}}>
                 <Form style={formContainer}>
             <FormGroup>
               <Label for="username" style={lableStyle}>Nummy</Label>
               <Input type="text" name="username" placeholder="Username" style={fieldStyle}
               />
+              <Input type="text" name="email" placeholder="E-mail" style={fieldStyle}
+              />
+              <Input type="text" name="telephone" placeholder="Telephone" style={fieldStyle}
+              />
               <Input type="text" name="password" placeholder="Password" style={fieldStyle}
               />
-              <Button className="btn-round" color="danger" style={{marginTop: "10px", width:"100%"}} type="button" >
-                Login
+              <Input type="text" name="passwordRepeat" placeholder="Repeat password" style={fieldStyle}
+              />
+              <Button className="btn-round" color="warning" style={{marginTop: "10px", width:"100%"}} type="button" >
+                Register
         </Button>
             </FormGroup>
           </Form>
@@ -43,4 +49,4 @@ function LoginScreen() {
     )
 }
 
-export default LoginScreen;
+export default RegisterScreen;

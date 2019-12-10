@@ -14,6 +14,8 @@ import IndexHeader from './components/Header';
 import LandingMenu from './components/LandingFoodMenu';
 import LandingReviews from './components/LandingUserReviews';
 import LandingGallery from './components/LandingGallery';
+import LoginScreen from './components/Login';
+import RegisterScreen from './components/Register'
 
 class App extends React.Component {
   state = {
@@ -50,6 +52,8 @@ class App extends React.Component {
           <LandingMenu></LandingMenu>
           <LandingGallery></LandingGallery>
           <LandingReviews></LandingReviews>
+          <LoginScreen></LoginScreen>
+          <RegisterScreen></RegisterScreen>
           <Badge color="success" pill>{this.state.username}</Badge>{" "}
           <form>
             <FormGroup>
