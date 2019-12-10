@@ -1,22 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Badge } from 'reactstrap';
-import {
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Button
-} from "reactstrap";
 import IndexNavbar from './components/Navbar';
-import IndexHeader from './components/Header';
-import LandingMenu from './components/LandingFoodMenu';
-import LandingReviews from './components/LandingUserReviews';
-import LandingGallery from './components/LandingGallery';
 import LoginScreen from './components/Login';
 import RegisterScreen from './components/Register'
-
+import {BrowserRouter as Router,
+        Switch, Route} from 'react-router-dom'
+import LandingPage from './components/Landing';
 class App extends React.Component {
   state = {
     username: null,
@@ -46,28 +36,16 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-      <IndexNavbar></IndexNavbar>
-        <header className="App-header">
-          <IndexHeader></IndexHeader>
-          <LandingMenu></LandingMenu>
-          <LandingGallery></LandingGallery>
-          <LandingReviews></LandingReviews>
-          <LoginScreen></LoginScreen>
-          <RegisterScreen></RegisterScreen>
-          <Badge color="success" pill>{this.state.username}</Badge>{" "}
-          <form>
-            <FormGroup>
-              <Label for="username">Get user</Label>
-              <Input type="text" name="username" placeholder="" value={this.state.formInput}
-              onChange={this.updateField.bind(this)}/>
-              <Button className="btn-round" color="primary" style={{margin: "10px"}} type="button" onClick={this.handleForm}>
-                Search
-        </Button>
-            </FormGroup>
-          </form>
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+     
+      <Router>
+         <IndexNavbar></IndexNavbar>
+        <Switch>
+          <Route path = "/" component = {LandingPage}/>
+          <Route path = "/home" component = {LandingPage} />
+          <Route path = "/login" component = {LoginScreen} />
+          <Route path = "/register" component = {RegisterScreen} />
+        </Switch>
+      </Router>
       </div>
     );
   }

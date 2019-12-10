@@ -19,6 +19,7 @@
 import React from "react";
 // nodejs library that concatenates strings
 import classnames from "classnames";
+import {Link} from 'react-router-dom'
 // reactstrap components
 import {
   Button,
@@ -66,6 +67,7 @@ function IndexNavbar() {
     <Navbar className={classnames("fixed-top", navbarColor)} expand="lg">
       <Container>
         <div className="navbar-translate">
+          <Link to ="/home">
           <NavbarBrand
             data-placement="bottom"
             href="/index"
@@ -74,6 +76,7 @@ function IndexNavbar() {
           >
             Nummy
           </NavbarBrand>
+          </Link>
           <button
             aria-expanded={navbarCollapse}
             className={classnames("navbar-toggler navbar-toggler", {
@@ -127,22 +130,22 @@ function IndexNavbar() {
             </NavItem>
             <NavItem>
               <NavLink
-                href="https://demos.creative-tim.com/paper-kit-react/#/documentation?ref=pkr-index-navbar"
-                target="_blank"
-              >
-                <i className="nc-icon nc-book-bookmark" /> Login
+              > 
+                <Link to ="/login">
+                  <span style={{color: "white", fontWeight : "700", fontSize:"15px"}}>
+                     Login</span>
+                </Link>
               </NavLink>
             </NavItem>
             <NavItem>
+              <Link to ="/register">
               <Button
                 className="btn-round"
                 color="warning"
-                href="#pablo"
-                target="_blank"
-                disabled
               >
                 Register
               </Button>
+              </Link>
             </NavItem>
           </Nav>
         </Collapse>
