@@ -40,10 +40,10 @@ class App extends React.Component {
       <Router>
          <IndexNavbar></IndexNavbar>
         <Switch>
-          <Route path = "/" component = {LandingPage}/>
           <Route path = "/home" component = {LandingPage} />
           <Route path = "/login" component = {LoginScreen} />
           <Route path = "/register" component = {RegisterScreen} />
+          <Route path = "*" component = {LandingPage}/>
         </Switch>
       </Router>
       </div>
