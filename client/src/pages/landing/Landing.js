@@ -12,6 +12,7 @@ import IndexHeader from '../../components/header/Header';
 import LandingReviews from '../../components/landing-user-reviews/LandingUserReviews';
 import LandingGallery from '../../components/landing-gallery/LandingGallery';
 import LandingMenu from '../../components/landing-food-menu/LandingFoodMenu';
+import Footer from '../../components/footer/Footer'
 
 function LandingPage() {
 
@@ -23,6 +24,7 @@ function LandingPage() {
           <LandingMenu></LandingMenu>
           <LandingGallery></LandingGallery>
           <LandingReviews></LandingReviews>
+          <Footer></Footer>
           </header>
         </>
     )
