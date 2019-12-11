@@ -98,7 +98,6 @@ function IndexNavbar() {
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://twitter.com/CreativeTim?ref=creativetim"
                 target="_blank"
                 title="Follow us on Twitter"
               >
@@ -109,7 +108,6 @@ function IndexNavbar() {
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://www.facebook.com/CreativeTim?ref=creativetim"
                 target="_blank"
                 title="Like us on Facebook"
               >
@@ -120,7 +118,6 @@ function IndexNavbar() {
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
                 target="_blank"
                 title="Follow us on Instagram"
               >
