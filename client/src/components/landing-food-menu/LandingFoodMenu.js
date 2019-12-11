@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Card, CardImg, CardBody, CardTitle, CardText, Badge } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Badge,CardImgOverlay} from 'reactstrap';
 import '../../components/landing-food-menu/landing-food-menu.css' ;
 
 function LandingMenu() {
