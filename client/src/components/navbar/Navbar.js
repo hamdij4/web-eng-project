@@ -103,7 +103,7 @@ function IndexNavbar() {
                 title="Follow us on Twitter"
               >
                 <i className="fa fa-twitter" />
-                <p className="d-lg-none">Twitter</p>
+                <span>Home</span>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -114,7 +114,7 @@ function IndexNavbar() {
                 title="Like us on Facebook"
               >
                 <i className="fa fa-facebook-square" />
-                <p className="d-lg-none">Facebook</p>
+                <span>Order</span>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -125,7 +125,7 @@ function IndexNavbar() {
                 title="Follow us on Instagram"
               >
                 <i className="fa fa-instagram" />
-                <p className="d-lg-none">Instagram</p>
+                <span>Contact</span>
               </NavLink>
             </NavItem>
             <NavItem>

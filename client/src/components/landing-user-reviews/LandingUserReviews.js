@@ -1,6 +1,7 @@
 
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardText, Badge} from 'reactstrap';
 import Image from 'react-bootstrap/Image'
 
 const componentStyle = {
@@ -11,6 +12,12 @@ const componentStyle = {
     padding: "50px"
 };
 
+const cardStyle = {
+    height: "50%",
+    minHeight: "50%",
+    width: "auto",
+    minWidth: "50%"
+}
 function LandingReviews(){
 
     return (
@@ -18,27 +25,39 @@ function LandingReviews(){
             <div className="landing-review-container" style={componentStyle}>
                 <h2 style={{marginBottom: "75px"}}>What they say about us</h2>
                 <Container>
-                    <Row>
-                        <Col sm={4} style={{backgroundColor: "rgba(200,200,200, 0.2)", borderRadius:"10px", margin: "10px", padding: "10px"}}>
-                        <Image src={require("../../assets/img/DefaultProfile1.jpg")} style={{height: "150px", width: "150px"}}roundedCircle /><br></br><br></br>
-                        <h8 style={{margin: "40px"}}>Ivan Andersen</h8><br></br>
-                        <h2 style={{fontSize: "22px"}}>What a wonderful world. Service is 10/10</h2> <br></br>
-                        <h6 style={{fontSize:"12px", float : "right"}}> 12.05.2019.</h6>
+                    <Row >
+                        <Col xs={12} sm = {12} lg={4} md={4}><Card style={cardStyle, {marginBottom: "30px"}}>
+                            <CardImg top src={require("../../assets/img/DefaultProfile1.jpg")} alt="..."  />
+                            <CardTitle>
+<Badge color="warning" pill>Ed Sheeran</Badge>{" "}
+                            </CardTitle>
+                            <CardBody>
+                                <CardText><h5>Customer Service done right!</h5></CardText>
+                            </CardBody>
+                        </Card>
                         </Col>
-                        <Col sm={4}style={{backgroundColor: "rgba(200,200,200, 0.2)", borderRadius:"10px", margin: "10px", padding: "10px"}}>
-                        <Image src={require("../../assets/img/DefaultProfile2.jpg")} style={{height: "150px", width: "150px"}}roundedCircle /><br></br><br></br>
-                        <h8 style={{margin: "40px"}}>Stefani Andersen</h8><br></br>
-                        <h2 style={{fontSize: "22px"}}>A wonderful journey</h2> <br></br>
-                        <h6 style={{fontSize:"12px", float : "right"}}> 11.02.2019.</h6>
+                        <Col xs={12} sm = {12} lg={4} md={4}><Card style={cardStyle, {marginBottom: "30px"}}>
+                            <CardImg top src={require("../../assets/img/DefaultProfile2.jpg")} alt="..."  />
+                            <CardTitle>
+<Badge color="warning" pill>Ed Sheeran</Badge>{" "}
+                            </CardTitle>
+                            <CardBody>
+                                <CardText><h5>Customer Service done right!</h5></CardText>
+                            </CardBody>
+                        </Card>
                         </Col>
-                        <Col style={{backgroundColor: "rgba(200,200,200, 0.2)", borderRadius:"10px", margin: "10px", padding: "10px"}}>
-                        <Image src={require("../../assets/img/DefaultProfile2.jpg")} style={{height: "150px", width: "150px"}}roundedCircle /><br></br><br></br>
-                        <h8 style={{margin: "40px"}}>Toni Cetinski </h8><br></br>
-                        <h2 style={{fontSize: "22px"}}>What a wonderful world. Service is 10/10</h2> <br></br>
-                        <h6 style={{fontSize:"12px", float : "right"}}> 12.05.2019.</h6>
+                        <Col xs={12} sm = {12} lg={4} md={4}><Card style={cardStyle, {marginBottom: "30px"}}>
+                            <CardImg top src={require("../../assets/img/DefaultProfile1.jpg")} alt="..."  />
+                            <CardTitle>
+<Badge color="warning" pill>Ed Sheeran</Badge>{" "}
+                            </CardTitle>
+                            <CardBody>
+                                <CardText><h5>Customer Service done right!</h5></CardText>
+                            </CardBody>
+                        </Card>
                         </Col>
                     </Row>
-                </Container>
+                    </Container>
             </div>
             </>
     )

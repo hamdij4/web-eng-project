@@ -1,0 +1,16 @@
+
+.menu-holder {
+    max-height: max-content;
+    min-height : max-content;
+    background-color : rgba(255, 213, 97, 1);
+    width : 100vw;
+    padding : 50px;
+}
+
+.food-menu-card{
+    height: 100%;
+    min-height: min-content;
+    width : 100%;
+    min-width : min-content;
+    margin-bottom : 15px;
+}

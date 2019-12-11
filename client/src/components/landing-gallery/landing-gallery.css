@@ -1,0 +1,21 @@
+
+
+.gallery-container {
+    max-height : max-content;
+    min-height:  max-content;
+    background-color: orange;
+    width : 100vw;
+    padding : 50px;
+}
+.row-gallery {
+    width: max-content;
+}
+
+.image {
+    height : auto;
+    max-height: 300px;
+    min-height: 300px;
+    width: auto;
+    max-width: 500px;
+    min-width: 500px;
+}
