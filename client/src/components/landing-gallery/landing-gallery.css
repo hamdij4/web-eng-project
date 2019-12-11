@@ -4,18 +4,17 @@
     max-height : max-content;
     min-height:  max-content;
     background-color: orange;
-    width : 100vw;
-    padding : 50px;
+    width : 100%;
+    position: relative;
+    padding-bottom: 50px;
 }
 .row-gallery {
-    width: max-content;
+    width: auto;
 }
 
 .image {
-    height : auto;
-    max-height: 300px;
-    min-height: 300px;
-    width: auto;
-    max-width: 500px;
-    min-width: 500px;
+    display:block;
+    min-height: 250px;
+    min-width: 100px;
+    background-size: cover;
 }

@@ -24,21 +24,21 @@ function LandingGallery() {
         <>
             <div className="gallery-container">
                     <h2 style={{marginBottom : "30px"}}>Our partners</h2>
-                <Container style={{marginLeft : "10vw"}}>
+                <Container style={{margin: 'none'}}>
                     <Row className="row-gallery">
-                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Woki, backgroundSize : "cover", height: "35vh", minWidth: "25vw"}}>
+                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Woki}}>
                         </Col>
-                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Amerikanac, backgroundSize : "cover", height: "35vh", minWidth: "25vw"}}>
+                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Amerikanac}}>
                         </Col>
-                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Montana, backgroundSize : "cover", height: "35vh", minWidth: "25vw"}}>
+                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Montana}}>
                         </Col>
                     </Row>
                     <Row className="row-gallery">
-                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.IChicken, backgroundSize : "cover", height: "35vh", minWidth: "25vw"}}>
+                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.IChicken}}>
                         </Col>
-                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Zeljo, backgroundSize : "cover", height: "35vh", minWidth: "25vw"}}>
+                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Zeljo}}>
                         </Col>
-                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Klopa, backgroundSize : "cover", height: "35vh", minWidth: "25vw"}}>
+                        <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Klopa}}>
                         </Col>
                     </Row>
                 </Container>

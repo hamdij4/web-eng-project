@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Card, CardImg, CardBody, CardTitle, CardText, Button } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Badge } from 'reactstrap';
 import '../../components/landing-food-menu/landing-food-menu.css' ;
 
 function LandingMenu() {
@@ -17,6 +17,7 @@ function LandingMenu() {
                         <Col xs={12} sm = {12} lg={4} md={4}>
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Hamburger.jpg")} alt="..." />
+                            <Badge color="danger" pill className="price-tag">$4.99</Badge>
                             <CardTitle>
                                 Hamburger XL
                             </CardTitle>
@@ -29,6 +30,7 @@ function LandingMenu() {
                         <Col xs={12} sm = {12} lg={4} md={4}>
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Hamburger.jpg")} alt="..." />
+                            <Badge color="danger" pill className="price-tag">$4.99</Badge>
                             <CardTitle>
                                 Hamburger S
                             </CardTitle>
@@ -41,6 +43,7 @@ function LandingMenu() {
                         <Col xs={12} sm = {12} lg={4} md={4}>
                             <Card  className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Hamburger.jpg")} alt="..." />
+                            <Badge color="danger" pill className="price-tag">$4.99</Badge>
                             <CardTitle>
                                 Hamburger Kids
                             </CardTitle>
@@ -55,6 +58,7 @@ function LandingMenu() {
                         <Col xs={12} sm = {12} lg={4} md={4}>
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Doner.jpg")} alt="..." />
+                            <Badge color="danger" pill className="price-tag">9.50 KM</Badge>
                             <CardTitle>
                                 Doner Large
                             </CardTitle>
@@ -67,6 +71,7 @@ function LandingMenu() {
                         <Col xs={12} sm = {12} lg={4} md={4}>
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Doner.jpg")} alt="..." />
+                            <Badge color="danger" pill className="price-tag">7 KM</Badge>
                             <CardTitle>
                                 Doner Medium
                             </CardTitle>
@@ -79,6 +84,7 @@ function LandingMenu() {
                         <Col xs={12} sm = {12} lg={4} md={4}>
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Doner.jpg")} alt="..." />
+                            <Badge color="danger" pill className="price-tag">$6.50</Badge>
                             <CardTitle>
                                 Doner Kids
                             </CardTitle>
