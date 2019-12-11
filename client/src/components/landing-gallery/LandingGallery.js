@@ -52,7 +52,7 @@ function LandingGallery() {
                             <div className="overlay">
                                 <h2 style={{margin: "0px", padding: "20px"}}>Zeljo</h2>
                                 <h6>Sarajevo, Bascarsija</h6>
-                                <p>Overrated AF </p>/p>
+                                <p>Overrated AF </p>
                             </div>
                         </Col>
                         <Col className="image"lg={4} md={4} sm={12} xs={12} style={{backgroundImage : images.Klopa}}>
