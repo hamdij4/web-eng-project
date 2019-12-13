@@ -1,10 +1,12 @@
 .view-holder{
     position: relative;
-    padding-top: 50px;
+    padding-top: 100px;
     justify-content: center;
     background-color: rgba(245, 167, 66,1);
-    height: 100vh;
+    height: max-content;
     width: 100vw;
+    overflow: hidden;
+    background-image: url('../../assets/img/HamburgerLogin.jpg');
 }
 
 @media screen and(max-width: 600px){
@@ -47,4 +49,13 @@
     min-height: max-content;
     background-color: white;
     border-radius: 10px;
+}
+
+.static-card.card:not(.card-plain):hover{    
+    box-shadow: none;
+    transform: none;
+    -webkit-transform: none;
+    -ms-transform: none;
+    -moz-transform: none;
+
 }
