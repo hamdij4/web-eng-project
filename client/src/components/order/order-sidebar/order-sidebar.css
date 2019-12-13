@@ -1,0 +1,15 @@
+.sidebar{
+    position: relative;
+    height: auto;
+    width: auto;
+    text-align: left;
+}
+.sidebar-button{
+    width:100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px;
+}
+.button{
+    width: 100%;
+}

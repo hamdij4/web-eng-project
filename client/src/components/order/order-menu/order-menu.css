@@ -1,0 +1,17 @@
+.title{
+    text-align: left;
+    margin-left: 25px;
+    color: gray;
+}
+
+.food-col{
+    height: max-content;
+    margin: auto;
+}
+
+.food-card{
+    height: max-content;
+    margin: auto;
+    margin-bottom: 30px;
+    width: 225px;
+}

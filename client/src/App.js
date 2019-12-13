@@ -7,6 +7,7 @@ import RegisterScreen from './pages/register/Register'
 import {BrowserRouter as Router,
         Switch, Route} from 'react-router-dom'
 import LandingPage from './pages/landing/Landing';
+import OrderMenu from './pages/order-menu/OrderMenu';
 class App extends React.Component {
   state = {
     username: null,
@@ -43,6 +44,7 @@ class App extends React.Component {
           <Route path = "/home" component = {LandingPage} />
           <Route path = "/login" component = {LoginScreen} />
           <Route path = "/register" component = {RegisterScreen} />
+          <Route path = "/order" component = {OrderMenu}/>
           <Route path = "*" component = {LandingPage}/>
         </Switch>
       </Router>

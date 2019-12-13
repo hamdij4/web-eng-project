@@ -14,7 +14,7 @@ function LandingMenu() {
                 }}>Today's hot offers</h3>
                 <Container>
                     <Row >
-                        <Col xs={12} sm = {12} lg={4} md={4}>
+                        <Col xs={12} sm = {12} lg={4} md={4} className="card-holder">
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Hamburger.jpg")} alt="..." />
                             <Badge color="danger" pill className="price-tag">$4.99</Badge>
@@ -27,7 +27,7 @@ function LandingMenu() {
                             </CardBody>
                         </Card>
                         </Col>
-                        <Col xs={12} sm = {12} lg={4} md={4}>
+                        <Col xs={12} sm = {12} lg={4} md={4}  className="card-holder">
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Hamburger.jpg")} alt="..." />
                             <Badge color="danger" pill className="price-tag">$4.99</Badge>
@@ -40,7 +40,7 @@ function LandingMenu() {
                             </CardBody>
                         </Card>
                         </Col>
-                        <Col xs={12} sm = {12} lg={4} md={4}>
+                        <Col xs={12} sm = {12} lg={4} md={4} className="card-holder">
                             <Card  className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Hamburger.jpg")} alt="..." />
                             <Badge color="danger" pill className="price-tag">$4.99</Badge>
@@ -55,7 +55,7 @@ function LandingMenu() {
                         </Col>
                     </Row>
                     <Row style={{marginTop: "20px"}}>
-                        <Col xs={12} sm = {12} lg={4} md={4}>
+                        <Col xs={12} sm = {12} lg={4} md={4} className="card-holder">
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Doner.jpg")} alt="..." />
                             <Badge color="danger" pill className="price-tag">9.50 KM</Badge>
@@ -68,7 +68,7 @@ function LandingMenu() {
                             </CardBody>
                         </Card>
                         </Col>
-                        <Col xs={12} sm = {12} lg={4} md={4}>
+                        <Col xs={12} sm = {12} lg={4} md={4} className="card-holder">
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Doner.jpg")} alt="..." />
                             <Badge color="danger" pill className="price-tag">7 KM</Badge>
@@ -81,7 +81,7 @@ function LandingMenu() {
                             </CardBody>
                         </Card>
                         </Col>
-                        <Col xs={12} sm = {12} lg={4} md={4}>
+                        <Col xs={12} sm = {12} lg={4} md={4} className="card-holder">
                             <Card className = "food-menu-card">
                             <CardImg top src={require("../../assets/img/Doner.jpg")} alt="..." />
                             <Badge color="danger" pill className="price-tag">$6.50</Badge>
@@ -95,7 +95,7 @@ function LandingMenu() {
                         </Card>
                         </Col>
                     </Row>
-                    <h6 style={{color: "orange", float: "right", fontSize: "12px"}}>Show more</h6>
+                    <h6 style={{color: "orange", float: "right", fontSize: "12px", marginTop: "20px"}}>Show more</h6>
                 </Container>
             </div>
         </>

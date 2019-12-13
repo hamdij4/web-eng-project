@@ -20,6 +20,7 @@ import React from "react";
 // nodejs library that concatenates strings
 import classnames from "classnames";
 import {Link} from 'react-router-dom'
+import '../../components/navbar/navbar.css'
 // reactstrap components
 import {
   Button,
@@ -31,7 +32,9 @@ import {
   Nav,
   Container
 } from "reactstrap";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome, faUtensils, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
+ 
 function IndexNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
@@ -70,7 +73,6 @@ function IndexNavbar() {
           <Link to ="/home">
           <NavbarBrand
             data-placement="bottom"
-            href="/index"
             target="_blank"
             title="Nummy v1.0.0"
           >
@@ -101,19 +103,21 @@ function IndexNavbar() {
                 target="_blank"
                 title="Follow us on Twitter"
               >
-                <i className="fa fa-twitter" />
+                <FontAwesomeIcon className="fa-icon" icon={faHome}/>
                 <span>Home</span>
               </NavLink>
             </NavItem>
             <NavItem>
+              <Link to ="/order">
               <NavLink
                 data-placement="bottom"
                 target="_blank"
                 title="Like us on Facebook"
               >
-                <i className="fa fa-facebook-square" />
+              <FontAwesomeIcon className="fa-icon" icon={faUtensils}/>
                 <span>Order</span>
               </NavLink>
+              </Link>
             </NavItem>
             <NavItem>
               <NavLink
@@ -121,7 +125,7 @@ function IndexNavbar() {
                 target="_blank"
                 title="Follow us on Instagram"
               >
-                <i className="fa fa-instagram" />
+              <FontAwesomeIcon className="fa-icon" icon={faPhoneAlt}/>
                 <span>Contact</span>
               </NavLink>
             </NavItem>

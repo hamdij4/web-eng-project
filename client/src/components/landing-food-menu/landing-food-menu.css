@@ -13,7 +13,11 @@
     min-height: min-content;
     width : 100%;
     min-width : min-content;
-    margin-bottom : 30px;
+}
+@media screen and (max-width : 600px){
+    .card-holder{
+        margin-bottom: 60px;
+    }
 }
 
 .price-tag{
