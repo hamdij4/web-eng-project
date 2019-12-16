@@ -21,7 +21,7 @@ module.exports = (router, db, mongojs, jwt, config) => {
         });
     });
 
-    router.get('/food', (req, res) => {
+    router.get('/FoodMenu', (req, res) => {
         let limit = Number(req.query.limit) || 6;
         let skip = Number(req.query.skip) || 0;
         db.food.find({}).skip(skip).limit(limit, (error, docs) => {
