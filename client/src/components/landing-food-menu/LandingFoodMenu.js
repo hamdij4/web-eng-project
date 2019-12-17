@@ -7,7 +7,6 @@ import '../../components/landing-food-menu/landing-food-menu.css' ;
 async function getLandingMenu () {
     const response = await fetch('visitor/FoodMenu');
     const body = await response.json();
-    console.log("Async function body: ", body)
     if (response.status !== 200) {
       throw Error(body.message)
     }
@@ -21,7 +20,6 @@ function LandingMenu() {
         getLandingMenu()
         .then(res => { 
             setMenuItems(res); 
-            formatIngredients(res[0].ingredients)
         })
         .catch(e => {console.log(e)});
     }, [] );

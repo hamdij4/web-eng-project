@@ -29,9 +29,22 @@ module.exports = (router, db, mongojs, jwt, config) => {
                 throw error;
             }
             res.json(docs);
-            console.log(limit, " ", skip);
         });
     });
+    router.get('/FoodMenu/:type', (req, res) => {
+        let reqType = req.params.type;
+        let limit = 6;
+        let skip = Number(req.query.skip) || 0;
+        db.food.find({type:reqType}).skip(skip).limit(limit,
+            (error, docs) => {
+                if(error){
+                    console.log("Error at FoodMenu/:type", error)
+                    throw error;
+                }
+                console.log(docs)
+                res.json(docs)
+            })
+    })
 
     router.post('/order/post', (req, res) => {
         let total = calculatePrice(req.body.content)
