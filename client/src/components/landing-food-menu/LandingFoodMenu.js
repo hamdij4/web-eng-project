@@ -3,6 +3,7 @@ import React, { useEffect, useState} from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Card, CardImg, CardBody, CardTitle, CardText, Badge,CardImgOverlay} from 'reactstrap';
 import '../../components/landing-food-menu/landing-food-menu.css' ;
+import axios from 'axios'
 
 async function getLandingMenu () {
     const response = await fetch('visitor/FoodMenu');
@@ -12,16 +13,25 @@ async function getLandingMenu () {
     }
     return body;
 };
+
+
 function LandingMenu() {
+
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const [menuItems, setMenuItems] = useState([]);
 
     useEffect(() => {
-        getLandingMenu()
-        .then(res => { 
-            setMenuItems(res); 
+        axios.get('visitor/foodmenu')
+        .then(res => {
+            setMenuItems(res.data)
         })
-        .catch(e => {console.log(e)});
+        .catch(err => {
+            console.log("Error at visitor/foodmenu GET: ", err)
+        })
+        .finally(
+            setIsLoaded(true)
+        )
     }, [] );
 
     const menuCards = menuItems.map((model) =>
@@ -55,12 +65,17 @@ function LandingMenu() {
                     marginBottom: "40px",
                     fontWeight: "600"
                 }}>Today's hot offers:</h3>
-                <Container>
-                    <Row>
-                        {menuCards}
-                    </Row>
-                    <h6 style={{color: "orange", float: "right", fontSize: "12px", marginTop: "20px"}}>Show more</h6>
-                </Container>
+                { isLoaded ? 
+                (
+                    <Container>
+                        <Row>
+                            {menuCards}
+                        </Row>
+                        <h6 style={{color: "orange", float: "right", fontSize: "12px", marginTop: "20px"}}>Show more</h6>
+                    </Container>
+                    ) :  (
+                        <h3>Loading items....</h3>
+                    )}
             </div>
         </>
             )

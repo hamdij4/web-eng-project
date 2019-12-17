@@ -5,27 +5,25 @@ import { Container, Col, Row } from 'reactstrap'
 import { Card, CardImg, CardBody, CardTitle, CardText, Badge, CardImgOverlay } from 'reactstrap';
 
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
-
-async function getOrderByType() {
-    const response = await fetch('visitor/FoodMenu/Dessert');
-    const body = await response.json();
-    if(response.status !== 200){
-        throw Error(body.message)
-    }
-    return body;
-}
-
+import axios from 'axios';
 
 function OrderMenuComponent() {
     const [menuItems, setMenuItems] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
-        getOrderByType()
-        .then(res => {
-            setMenuItems(res)
-        }).catch(e=>{console.log("Error at client -> FoodMenu/:type", e)})
+        axios.get('visitor/foodmenu/Dessert')
+            .then(res => {
+                setMenuItems(res.data)
+            })
+            .catch(err => {
+                console.log("Error at visitor/foodmenu/:type GET", err)
+            })
+            .finally(
+                setIsLoaded(true)
+            )
     }, []);
 
-    const menuCards = menuItems.map((model) => 
+    const menuCards = menuItems.map((model) =>
 
         <Col lg={4} md={4} sm={4} className="food-col">
             <Card className="food-card">
@@ -35,20 +33,25 @@ function OrderMenuComponent() {
                 </CardTitle>
                 <CardBody>
                     <CardText>
-                    <h6>{formatIngredients(model.ingredients)}</h6>
-                </CardText>
+                        <h6>{formatIngredients(model.ingredients)}</h6>
+                    </CardText>
                 </CardBody>
             </Card>
         </Col>
     )
 
-    function formatIngredients(ingredients){
+    function formatIngredients(ingredients) {
         let model = "";
         Object.keys(ingredients).forEach(ingredient => {
             model += ingredient + "  "
         });
         return model;
     }
+
+    handleCategoryButton = (e) => {
+        
+    }
+
     return (
         <>
             <div className="holder">
@@ -57,11 +60,17 @@ function OrderMenuComponent() {
                         Desserts
                     </h2>
                 </div>
-                <Container className="card-container">
-                    <Row>
-                       {menuCards}
-                    </Row>
-                </Container>
+                {isLoaded ?
+                    (
+                        <Container className="card-container">
+                            <Row>
+                                {menuCards}
+                            </Row>
+                        </Container>
+                    ) : (
+                        <h3>Loading items...</h3>
+                    )
+                }
                 <div className="pagination">
                     <nav aria-label="Page navigation example">
                         <Pagination>
