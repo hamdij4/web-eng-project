@@ -48,10 +48,6 @@ function OrderMenuComponent() {
         return model;
     }
 
-    handleCategoryButton = (e) => {
-        
-    }
-
     return (
         <>
             <div className="holder">
