@@ -22,7 +22,7 @@ function OrderMenuComponent() {
         getOrderByType()
         .then(res => {
             setMenuItems(res)
-        }).then(e=>{console.log("Error at client -> FoodMenu/:type", e)})
+        }).catch(e=>{console.log("Error at client -> FoodMenu/:type", e)})
     }, []);
 
     const menuCards = menuItems.map((model) => 
