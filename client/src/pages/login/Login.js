@@ -1,21 +1,35 @@
-import React from "react";
+import React, { useState, useCallback} from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import './login.css'
+import Axios from "axios";
+import {Redirect} from 'react-router-dom'
 
-const formContainer = {
-    backgroundColor: "rgba(245, 185, 66, 0.75)",
-    height: "max-content",
-    width: "max-content",
-    borderRadius : "5px",
-    padding: "30px"
-}
-const lableStyle = {
-    color: "white",
-    padding: "20px"
-}
-const fieldStyle = {
-    marginBottom: "10px"
-}
 function LoginScreen() {
+
+    const [loginInfo, setLoginInfo] = useState({
+        username: "Username",
+        password: "Password"
+    })
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const login = async() => {
+        await Axios.post('visitor/login', loginInfo)
+        .then(res => {
+            localStorage.setItem('token', res.data.jwt);
+            setLoggedIn(true);
+        })
+
+        .catch(error => {
+            console.log("Error loging in")
+        })
+        .finally(
+            console.log("to add tips")
+        )
+    }
+    const handleInputField = useCallback(event => {
+        setLoginInfo({...loginInfo, [event.target.name] : event.target.value})
+        console.log(loginInfo)
+      })
     return (
         <>
         <div
@@ -24,19 +38,24 @@ function LoginScreen() {
           backgroundImage:
             "url(" + require("../../assets/img/HamburgerLogin.jpg") + ")", backgroundSize: "cover"}}>
                 <div className="filter"/>
-                <div className="form-container" style={{zIndex: "100"}}>
-                <Form style={formContainer}>
+                <div className="form-container" style={{zIndex: "100", backgroundColor: "none"}}>
+                <Form className="form-container">
             <FormGroup>
-              <Label for="username" style={lableStyle}>Nummy</Label>
-              <Input type="text" name="username" placeholder="Username" style={fieldStyle}
+              <Label for="username" className="label">Nummy</Label>
+              <Input onChange={handleInputField} type="text" name="username" placeholder="Username" className="field"
               />
-              <Input type="text" name="password" placeholder="Password" style={fieldStyle}
+              <Input onChange={handleInputField} type="password" name="password" placeholder="Password" className="field"
               />
-              <Button className="btn-round" color="danger" style={{marginTop: "10px", width:"100%"}} type="button" >
+              <Button onClick={login} className="btn-round" color="warning" style={{marginTop: "10px", width:"100%"}} type="button" >
                 Login
         </Button>
             </FormGroup>
           </Form>
+          {
+              loggedIn ?
+              (<Redirect to='/home' />)
+              : (console.log(""))
+          }
           </div>
         </div>
         </>

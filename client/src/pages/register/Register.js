@@ -1,21 +1,42 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import './register.css'
+import axios from 'axios'
+import {Redirect} from 'react-router-dom'
 
-const formContainer = {
-    backgroundColor: "rgba(255, 89, 33, 0.75)",
-    height: "max-content",
-    width: "max-content",
-    borderRadius : "5px",
-    padding: "30px"
-}
-const lableStyle = {
-    color: "white",
-    padding: "20px"
-}
-const fieldStyle = {
-    marginBottom: "10px"
-}
 function RegisterScreen() {
+    const [formData, setFormData] = useState({
+        username: "Username",
+        email: "E-mail",
+        telephone: "+387 ",
+        address: "Address, City, Postal Code",
+        password: "Password",
+        password_repeat: "Repeat password"
+    });
+    const [finished, setFinished] = useState(false);
+    const handleInputField = useCallback(event => {
+      setFormData({...formData, [event.target.name] : event.target.value})
+    })
+    const register = async () => {
+      let model = {
+        username : formData.username,
+        order_history: [],
+        balance: 0.0,
+        email: formData.email,
+        telephone: formData.telephone,
+        address: formData.address,
+        password: formData.password
+      }
+      await axios.post('visitor/register', model)
+      .then(res => {
+        setFinished(true);
+      })
+      .catch(error => {
+        alert("An error occured!")
+      })
+      .finally(
+      )
+    }
     return (
         <>
         <div
@@ -25,24 +46,28 @@ function RegisterScreen() {
             "url(" + require("../../assets/img/FrenchFries.jpg") + ")", backgroundSize: "cover"}}>
                 <div className="filter" />
                 <div className="form-container" style={{zIndex : "100"}}>
-                <Form style={formContainer}>
+                <Form >
             <FormGroup>
-              <Label for="username" style={lableStyle}>Nummy</Label>
-              <Input type="text" name="username" placeholder="Username" style={fieldStyle}
+              <Label for="username" className="form-label">Nummy</Label>
+              <Input onChange={handleInputField} type="text" name="username" placeholder="Username" className="form-input"
               />
-              <Input type="text" name="email" placeholder="E-mail" style={fieldStyle}
+              <Input onChange={handleInputField} type="text" name="email" placeholder="E-mail" className="form-input"
               />
-              <Input type="text" name="telephone" placeholder="Telephone" style={fieldStyle}
+              <Input onChange={handleInputField} type="text" name="telephone" placeholder="Telephone" className="form-input"
               />
-              <Input type="text" name="password" placeholder="Password" style={fieldStyle}
+              <Input onChange={handleInputField} type="text" name="address" placeholder="Address" className="form-input"
               />
-              <Input type="text" name="passwordRepeat" placeholder="Repeat password" style={fieldStyle}
+              <Input onChange={handleInputField} type="password" name="password" placeholder="Password" className="form-input"
               />
-              <Button className="btn-round" color="warning" style={{marginTop: "10px", width:"100%"}} type="button" >
+              <Input onChange={handleInputField} type="password" name="passwordRepeat" placeholder="Repeat password" className="form-input"
+              />
+              <Button className="btn-round" onClick={register}color="warning" style={{marginTop: "10px", width:"100%"}} type="button" >
                 Register
         </Button>
             </FormGroup>
           </Form>
+          {finished ?
+          (<Redirect to = '/login'/>) : (console.log(""))}
           </div>
         </div>
         </>

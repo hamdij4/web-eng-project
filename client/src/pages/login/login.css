@@ -1,0 +1,17 @@
+
+.form-container{
+    background-color : rgba(245, 185, 66, 0.75);
+    height: max-content;
+    width: max-content;
+    border-radius: 5px;
+    padding: 30px;
+}
+
+.label {
+    color: white;
+    padding : 20px;
+}
+
+.field {
+    margin-bottom: 10px;
+}

@@ -103,31 +103,12 @@ module.exports = (router, db, mongojs, jwt, config) => {
 
     router.post('/register', (req, res) => {
         if(req){
-            let username = req.body.username;
-            let password = req.body.password;
-            let email = req.body.email;
-            let address = req.body.address || 'No address given';
-            let phone = req.body.telephone || 'No phone number given';
 
-            var model = {
-                "username" : username,
-                "order_history" : [],
-                "balance" : 0.00,
-                "email" : email,
-                "telephone" : phone,
-                "address" : address,
-                "password" : password
-            };
+            var model = req.body;
 
             db.user.insertOne(model, (error, docs) => {
                 if(error) throw error;
-                console.log("User ", username, " was added successfully");
-                let token = jwt.sign({
-                    username :req.body.username, 
-                    type: "user", 
-                    exp: Math.floor(Date.now() / 1000) + 3600 
-                }, process.env.JWT_SECRET || config.JWT_SECRET)
-                res.send({response: "User created!", jwt: token});
+                res.send({response: "User created!"})
             });
         }
         else{
@@ -136,6 +117,24 @@ module.exports = (router, db, mongojs, jwt, config) => {
         }
     });
 
+    router.post('/login', (req, res) => {
+        if(req){
+            var model = req.body;
+
+            db.user.findOne({$and:[{username : model.username}, {password : model.password}]}, (error, docs) => {
+                if(error) throw error;
+                let token = jwt.sign({
+                    username :req.body.username, 
+                    type: "user", 
+                    exp: Math.floor(Date.now() / 1000) + 3600 
+                }, process.env.JWT_SECRET || config.JWT_SECRET)
+                res.send({response: "User logged in!", jwt: token});
+            })
+        } else {
+            res.status(400)
+            res.send('Invalid data')
+        }
+    })
 
 
     function calculatePrice(order){

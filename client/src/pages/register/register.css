@@ -1,0 +1,18 @@
+.form-container{
+    background-color: rgba(255, 89, 33, 0.75);
+    height: max-content;
+    width: max-content;
+    border-radius: 5px;
+    padding: 30px;
+    color: white;
+    font-size: 30px;
+}
+
+.input-label{
+    color: white;
+    padding: 20px;
+}
+
+.form-input{
+    margin-bottom: 10px;
+}
