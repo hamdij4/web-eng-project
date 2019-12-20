@@ -123,15 +123,23 @@ module.exports = (router, db, mongojs, jwt, config) => {
 
             db.user.findOne({$and:[{username : model.username}, {password : model.password}]}, (error, docs) => {
                 if(error) throw error;
-                let token = jwt.sign({
-                    username :req.body.username, 
-                    type: "user", 
-                    exp: Math.floor(Date.now() / 1000) + 3600 
-                }, process.env.JWT_SECRET || config.JWT_SECRET)
-                res.send({response: "User logged in!", jwt: token});
+                if(docs){
+                    if(model.username == docs.username && model.password == docs.password){
+                        let token = jwt.sign({
+                            username :req.body.username, 
+                            type: "user", 
+                            exp: Math.floor(Date.now() / 1000) + 3600 
+                        }, process.env.JWT_SECRET || config.JWT_SECRET)
+                        console.log(model.username, model.password, docs)
+                        res.send({response: "User logged in!", jwt: token});
+                    }
+                } else {
+                    res.status(401);
+                    res.send({response: "Invalid input", access: "DENIED"})
+                }
             })
         } else {
-            res.status(400)
+            res.status(401)
             res.send('Invalid data')
         }
     })

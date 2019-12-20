@@ -5,9 +5,14 @@ import IndexNavbar from './components/navbar/Navbar';
 import LoginScreen from './pages/login/Login';
 import RegisterScreen from './pages/register/Register'
 import {BrowserRouter as Router,
-        Switch, Route} from 'react-router-dom'
+        Switch, Route } from 'react-router-dom'
 import LandingPage from './pages/landing/Landing';
+import { createBrowserHistory } from "history"
 import OrderMenu from './pages/order-menu/OrderMenu';
+
+
+const history = createBrowserHistory();
+
 class App extends React.Component {
   state = {
     username: null,
@@ -15,10 +20,8 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.getUsername()
-      .then(res => { this.setState({ username: res[0].username }) })
-      .catch(err => { console.log(err) });
   }
+
   getUsername = async () => {
     const response = await fetch('customer/user/hamdija1234');
     const body = await response.json();
@@ -37,13 +40,16 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-     
-      <Router>
-         <IndexNavbar></IndexNavbar>
+        <Router>
+         {(window.location.pathname != "/login" || window.location.pathname != "/register") ?
+         (
+          <IndexNavbar></IndexNavbar>)
+        :( console.log(history.location.pathname)
+        )}
         <Switch>
           <Route path = "/home" component = {LandingPage} />
           <Route path = "/login" component = {LoginScreen} />
-          <Route path = "/register" component = {RegisterScreen} />
+          <Route path = "/register" component = {RegisterScreen}/>
           <Route path = "/order" component = {OrderMenu}/>
           <Route path = "*" component = {LandingPage}/>
         </Switch>

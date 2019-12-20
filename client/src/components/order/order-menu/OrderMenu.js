@@ -2,24 +2,25 @@ import './order-menu.css'
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { Container, Col, Row } from 'reactstrap'
-import { Card, CardImg, CardBody, CardTitle, CardText, Badge, CardImgOverlay } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Badge, CardImgOverlay, Spinner } from 'reactstrap';
 
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import axios from 'axios';
 
 function OrderMenuComponent() {
-    const [menuItems, setMenuItems] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [menuItems, setMenuItems] = useState([]);
     useEffect(() => {
         axios.get('visitor/foodmenu/Dessert')
             .then(res => {
                 setMenuItems(res.data)
+                setIsLoaded(true)
             })
             .catch(err => {
+                setIsLoaded(false)
                 console.log("Error at visitor/foodmenu/:type GET", err)
             })
             .finally(
-                setIsLoaded(true)
             )
     }, []);
 
@@ -50,6 +51,7 @@ function OrderMenuComponent() {
 
     return (
         <>
+            <div className="container">
             <div className="holder">
                 <div className="title">
                     <h2>
@@ -64,7 +66,10 @@ function OrderMenuComponent() {
                             </Row>
                         </Container>
                     ) : (
-                        <h3>Loading items...</h3>
+                        
+                        <div className="loading-spinner">
+                        <Spinner  style={{ width: '5rem', height: '5rem' }}  color="warning" />
+                        </div>
                     )
                 }
                 <div className="pagination">
@@ -98,6 +103,7 @@ function OrderMenuComponent() {
                         </Pagination>
                     </nav>
                 </div>
+            </div>
             </div>
         </>
     )

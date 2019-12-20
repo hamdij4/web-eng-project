@@ -3,6 +3,8 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './register.css'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHamburger } from '@fortawesome/free-solid-svg-icons'
 
 function RegisterScreen() {
     const [formData, setFormData] = useState({
@@ -37,18 +39,19 @@ function RegisterScreen() {
       .finally(
       )
     }
+    //url(" + require("../../assets/img/FrenchFries.jpg") + ")", backgroundSize: "cover
     return (
         <>
         <div
         className="page-header section-dark"
         style={{
-          backgroundImage:
-            "url(" + require("../../assets/img/FrenchFries.jpg") + ")", backgroundSize: "cover"}}>
-                <div className="filter" />
+          backgroundColor:
+            "rgba(255, 207, 74, 1)"}}>
+              <FontAwesomeIcon className="fa-icon register" icon={faHamburger}/>
                 <div className="form-container" style={{zIndex : "100"}}>
-                <Form >
+                <Form className="register-form">
             <FormGroup>
-              <Label for="username" className="form-label">Nummy</Label>
+              <Label for="username" className="label">Nummy</Label>
               <Input onChange={handleInputField} type="text" name="username" placeholder="Username" className="form-input"
               />
               <Input onChange={handleInputField} type="text" name="email" placeholder="E-mail" className="form-input"
@@ -61,7 +64,7 @@ function RegisterScreen() {
               />
               <Input onChange={handleInputField} type="password" name="passwordRepeat" placeholder="Repeat password" className="form-input"
               />
-              <Button className="btn-round" onClick={register}color="warning" style={{marginTop: "10px", width:"100%"}} type="button" >
+              <Button className="btn-round" onClick={register}color="danger" style={{marginTop: "10px", width:"75%", marginBottom:"20px"}} type="button" >
                 Register
         </Button>
             </FormGroup>

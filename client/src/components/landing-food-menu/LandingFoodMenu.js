@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState} from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Card, CardImg, CardBody, CardTitle, CardText, Badge,CardImgOverlay} from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Badge,CardImgOverlay, Spinner} from 'reactstrap';
 import '../../components/landing-food-menu/landing-food-menu.css' ;
 import axios from 'axios'
 
@@ -74,7 +74,9 @@ function LandingMenu() {
                         <h6 style={{color: "orange", float: "right", fontSize: "12px", marginTop: "20px"}}>Show more</h6>
                     </Container>
                     ) :  (
-                        <h3>Loading items....</h3>
+                        <div className="loading-spinner">
+                        <Spinner  style={{ width: '5rem', height: '5rem', margin: "100px"}}  color="danger" />
+                        </div>
                     )}
             </div>
         </>

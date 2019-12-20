@@ -1,9 +1,8 @@
 import React, { useState, useCallback} from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import './login.css'
 import Axios from "axios";
 import {Redirect} from 'react-router-dom'
-
 function LoginScreen() {
 
     const [loginInfo, setLoginInfo] = useState({
@@ -39,12 +38,12 @@ function LoginScreen() {
             "url(" + require("../../assets/img/HamburgerLogin.jpg") + ")", backgroundSize: "cover"}}>
                 <div className="filter"/>
                 <div className="form-container" style={{zIndex: "100", backgroundColor: "none"}}>
-                <Form className="form-container">
+                <Form className="login-form">
             <FormGroup>
               <Label for="username" className="label">Nummy</Label>
-              <Input onChange={handleInputField} type="text" name="username" placeholder="Username" className="field"
+              <Input onChange={handleInputField} type="text" name="username" placeholder="Username" className="form-input"
               />
-              <Input onChange={handleInputField} type="password" name="password" placeholder="Password" className="field"
+              <Input onChange={handleInputField} type="password" name="password" placeholder="Password" className="form-input"
               />
               <Button onClick={login} className="btn-round" color="warning" style={{marginTop: "10px", width:"100%"}} type="button" >
                 Login
@@ -53,7 +52,9 @@ function LoginScreen() {
           </Form>
           {
               loggedIn ?
-              (<Redirect to='/home' />)
+              (
+              <Redirect to='/home' />
+              )
               : (console.log(""))
           }
           </div>
