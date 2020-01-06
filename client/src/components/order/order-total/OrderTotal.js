@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './order-total.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +8,7 @@ import {Button, Badge} from 'reactstrap'
 function OrderTotal(){
 
 
-    const [orderModel, setOrderModel] = useEffect({
+    const [orderModel, setOrderModel] = useState({
         username : "",
         telephone: "",
         content: [],
