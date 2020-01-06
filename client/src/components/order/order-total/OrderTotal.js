@@ -6,6 +6,7 @@ import {Button, Badge} from 'reactstrap'
 import store from "../../../redux/store/index"
 import { addItemToCart } from "../../../redux/actions/index"
 
+import { useDispatch, useSelector } from "react-redux"; 
 function OrderTotal(){
 
 
@@ -22,10 +23,8 @@ function OrderTotal(){
         paid : false,
         serial_no: 0
     })
-
-    function addItem(e){
-        
-    }
+    //const [orderList, setOrderList] = useState([])
+    const orderList = useSelector(state => state.orderCart)
 
     return (
         <>
@@ -33,7 +32,8 @@ function OrderTotal(){
             <h4>Your Order:</h4>
 
             <div className="order-list">
-                <ul>
+                <ul>    
+                    <li onClick={() => {console.log(orderList)}}>{orderList}</li>
                     <li>Hamburger XL --- 1</li>
                     <li>Hamburger XL --- 1</li>
                     <li>Hamburger XL --- 1</li>

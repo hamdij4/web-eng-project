@@ -4,9 +4,11 @@ const initialState = {
     orderCart: []
   };
   function rootReducer(state = initialState, action) {
+    console.log("Action", action)
       if(action.type === ADD_TO_CART){
-          return Object.assign({}, state, {
-              orderCart : state.orderCart.concat(action.payload)
+        console.log(state.orderCart)
+          return Object.assign({},state, {
+              orderCart : state.orderCart.concat(action.payload.name)
           })
       }
     return state;

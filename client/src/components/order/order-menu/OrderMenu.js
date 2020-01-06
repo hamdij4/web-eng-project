@@ -1,11 +1,12 @@
 import './order-menu.css'
 import React, { useEffect, useState } from "react";
-import classnames from "classnames";
 import { Container, Col, Row } from 'reactstrap'
 import { Card, CardImg, CardBody, CardTitle, CardText, Badge, CardImgOverlay, Spinner } from 'reactstrap';
-
+import { connect } from 'react-redux'
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import axios from 'axios';
+import {addItemToCart} from '../../../redux/actions/index'
+import { useDispatch } from 'react-redux'
 
 function OrderMenuComponent() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -23,11 +24,11 @@ function OrderMenuComponent() {
             .finally(
             )
     }, []);
-
+    const dispatch = useDispatch()
     const menuCards = menuItems.map((model) =>
 
         <Col lg={4} md={4} sm={4} className="food-col">
-            <Card className="food-card">
+            <Card className="food-card" onClick={() => dispatch(addItemToCart(model))}>
                 <CardImg top src={require("../../../assets/img/Hamburger.jpg")} alt="..." />
                 <CardTitle>
                     {model.name}
@@ -109,4 +110,7 @@ function OrderMenuComponent() {
     )
 }
 
-export default OrderMenuComponent;
+export default connect(
+    null,
+    {addItemToCart}
+)(OrderMenuComponent);
