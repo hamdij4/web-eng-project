@@ -3,7 +3,8 @@ import './order-total.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 import {Button, Badge} from 'reactstrap'
-
+import store from "../../../redux/store/index"
+import { addItemToCart } from "../../../redux/actions/index"
 
 function OrderTotal(){
 
@@ -21,6 +22,10 @@ function OrderTotal(){
         paid : false,
         serial_no: 0
     })
+
+    function addItem(e){
+        
+    }
 
     return (
         <>
