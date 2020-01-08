@@ -6,13 +6,17 @@ import { connect } from 'react-redux'
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import axios from 'axios';
 import {addItemToCart} from '../../../redux/actions/index'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector} from 'react-redux'
 
 function OrderMenuComponent() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [menuItems, setMenuItems] = useState([]);
+    const dispatch = useDispatch()
+    const orderType = useSelector(state => state.orderPageType)
+    let query = 'visitor/foodmenu/' + orderType
     useEffect(() => {
-        axios.get('visitor/foodmenu/Dessert')
+        console.log(query)
+        axios.get(query)
             .then(res => {
                 setMenuItems(res.data)
                 setIsLoaded(true)
@@ -23,8 +27,7 @@ function OrderMenuComponent() {
             })
             .finally(
             )
-    }, []);
-    const dispatch = useDispatch()
+    }, [query]);
     const menuCards = menuItems.map((model) =>
 
         <Col lg={4} md={4} sm={4} className="food-col">
@@ -45,7 +48,7 @@ function OrderMenuComponent() {
     function formatIngredients(ingredients) {
         let model = "";
         Object.keys(ingredients).forEach(ingredient => {
-            model += ingredient + "  "
+            model += ingredient.replace("_", " ") + " "
         });
         return model;
     }
@@ -56,7 +59,7 @@ function OrderMenuComponent() {
             <div className="holder">
                 <div className="title">
                     <h2>
-                        Desserts
+                        {orderType}
                     </h2>
                 </div>
                 {isLoaded ?

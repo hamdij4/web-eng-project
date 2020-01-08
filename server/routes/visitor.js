@@ -35,7 +35,7 @@ module.exports = (router, db, mongojs, jwt, config) => {
         let reqType = req.params.type;
         let limit = 6;
         let skip = Number(req.query.skip) || 0;
-        db.food.find({type:reqType}).skip(skip).limit(limit,
+        db.food.find({category: reqType}).skip(skip).limit(limit,
             (error, docs) => {
                 if(error){
                     console.log("Error at FoodMenu/:type", error)
