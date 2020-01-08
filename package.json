@@ -9,7 +9,7 @@
     "backend": "cd server && nodemon server.js",
     "dev": "concurrently --kill-others \"npm run backend\" \"npm run frontend\"",
     "install": "cd server && npm install && cd ../client && npm install",
-    "start": "cd client && npm run build && cd ../server && node server.js"
+    "start": "npm install && cd client && npm run build && cd ../server && node server.js"
   },
   "repository": {
     "type": "git",
