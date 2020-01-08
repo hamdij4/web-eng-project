@@ -15,7 +15,6 @@ function OrderMenuComponent() {
     const orderType = useSelector(state => state.orderPageType)
     let query = 'visitor/foodmenu/' + orderType
     useEffect(() => {
-        console.log(query)
         axios.get(query)
             .then(res => {
                 setMenuItems(res.data)
@@ -23,7 +22,7 @@ function OrderMenuComponent() {
             })
             .catch(err => {
                 setIsLoaded(false)
-                console.log("Error at visitor/foodmenu/:type GET", err)
+                console.log("Error at foodmenu/:type GET", err)
             })
             .finally(
             )
@@ -33,6 +32,7 @@ function OrderMenuComponent() {
         <Col lg={4} md={4} sm={4} className="food-col">
             <Card className="food-card" onClick={() => dispatch(addItemToCart(model))}>
                 <CardImg top src={require("../../../assets/img/Hamburger.jpg")} alt="..." />
+                <Badge color="danger" pill className="price-tag">{model.price} KM</Badge>
                 <CardTitle>
                     {model.name}
                 </CardTitle>

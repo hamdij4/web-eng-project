@@ -23,3 +23,12 @@
 .loading-spinner{
     margin: 100px;
 }
+.price-tag{
+    position: absolute;
+    min-width: max-content;
+    max-width: max-content;
+    top: 5%;
+    left: 5%;
+    font-size: 18px;
+    z-index: 99;
+}
