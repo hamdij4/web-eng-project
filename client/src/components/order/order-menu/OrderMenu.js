@@ -7,6 +7,7 @@ import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import axios from 'axios';
 import {addItemToCart} from '../../../redux/actions/index'
 import { useDispatch, useSelector} from 'react-redux'
+import { read } from 'fs';
 
 function OrderMenuComponent() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -52,13 +53,28 @@ function OrderMenuComponent() {
         });
         return model;
     }
+    function getBgColor(type){
+        switch(type){
+            case "sweets":
+                return '#51cbce'
+            case "doner":
+                return '#fbc658'
+            case "hamburger":
+                return '#fbc658'
+            case "pizza":
+                return '#f5593d'
+            case "sandwich": 
+                return '#f5593d'
+        }
+        return "secondary"
+    }
 
     return (
         <>
             <div className="container">
             <div className="holder">
                 <div className="title">
-                    <h2>
+                    <h2 className="order-title" style={{backgroundColor : getBgColor(orderType)}}>
                         {orderType}
                     </h2>
                 </div>

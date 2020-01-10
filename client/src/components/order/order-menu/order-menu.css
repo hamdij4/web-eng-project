@@ -32,3 +32,12 @@
     font-size: 18px;
     z-index: 99;
 }
+.order-title{
+    background-color: orange;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+    width: fit-content
+}
