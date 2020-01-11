@@ -1,33 +1,38 @@
 import './order-menu.css'
 import React, { useEffect, useState } from "react";
-import classnames from "classnames";
 import { Container, Col, Row } from 'reactstrap'
-import { Card, CardImg, CardBody, CardTitle, CardText, Badge, CardImgOverlay } from 'reactstrap';
-
+import { Card, CardImg, CardBody, CardTitle, CardText, Badge, CardImgOverlay, Spinner } from 'reactstrap';
+import { connect } from 'react-redux'
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import axios from 'axios';
+import {addItemToCart} from '../../../redux/actions/index'
+import { useDispatch, useSelector} from 'react-redux'
+import { read } from 'fs';
 
 function OrderMenuComponent() {
     const [menuItems, setMenuItems] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const dispatch = useDispatch()
+    const orderType = useSelector(state => state.orderPageType)
+    let query = 'visitor/foodmenu/' + orderType
     useEffect(() => {
-        axios.get('visitor/foodmenu/Dessert')
+        axios.get(query)
             .then(res => {
                 setMenuItems(res.data)
             })
             .catch(err => {
-                console.log("Error at visitor/foodmenu/:type GET", err)
+                setIsLoaded(false)
+                console.log("Error at foodmenu/:type GET", err)
             })
             .finally(
                 setIsLoaded(true)
             )
-    }, []);
-
+    }, [query]);
     const menuCards = menuItems.map((model) =>
 
         <Col lg={4} md={4} sm={4} className="food-col">
-            <Card className="food-card">
+            <Card className="food-card" onClick={() => dispatch(addItemToCart(model))}>
                 <CardImg top src={require("../../../assets/img/Hamburger.jpg")} alt="..." />
+                <Badge color="danger" pill className="price-tag">{model.price} KM</Badge>
                 <CardTitle>
                     {model.name}
                 </CardTitle>
@@ -43,17 +48,32 @@ function OrderMenuComponent() {
     function formatIngredients(ingredients) {
         let model = "";
         Object.keys(ingredients).forEach(ingredient => {
-            model += ingredient + "  "
+            model += ingredient.replace("_", " ") + " "
         });
         return model;
+    }
+    function getBgColor(type){
+        switch(type){
+            case "sweets":
+                return '#51cbce'
+            case "doner":
+                return '#fbc658'
+            case "hamburger":
+                return '#fbc658'
+            case "pizza":
+                return '#f5593d'
+            case "sandwich": 
+                return '#f5593d'
+        }
+        return "secondary"
     }
 
     return (
         <>
             <div className="holder">
                 <div className="title">
-                    <h2>
-                        Desserts
+                    <h2 className="order-title" style={{backgroundColor : getBgColor(orderType)}}>
+                        {orderType}
                     </h2>
                 </div>
                 {isLoaded ?
@@ -103,4 +123,7 @@ function OrderMenuComponent() {
     )
 }
 
-export default OrderMenuComponent;
+export default connect(
+    null,
+    {addItemToCart}
+)(OrderMenuComponent);
