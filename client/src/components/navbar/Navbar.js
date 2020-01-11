@@ -98,14 +98,16 @@ function IndexNavbar() {
         >
           <Nav navbar>
             <NavItem>
+              <Link to ="/home">
               <NavLink
                 data-placement="bottom"
-                target="_blank"
+                target=""
                 title="Follow us on Twitter"
               >
                 <FontAwesomeIcon className="fa-icon" icon={faHome}/>
                 <span>Home</span>
               </NavLink>
+              </Link>
             </NavItem>
             <NavItem>
               <Link to ="/order">

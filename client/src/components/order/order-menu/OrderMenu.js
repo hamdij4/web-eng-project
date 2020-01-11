@@ -11,6 +11,7 @@ import { read } from 'fs';
 
 function OrderMenuComponent() {
     const [menuItems, setMenuItems] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch()
     const orderType = useSelector(state => state.orderPageType)
     let query = 'visitor/foodmenu/' + orderType

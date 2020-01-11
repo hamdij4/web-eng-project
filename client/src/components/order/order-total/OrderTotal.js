@@ -64,23 +64,6 @@ function OrderTotal() {
                 }}>
                     <FontAwesomeIcon icon={faShoppingCart} /> {orderList.length} Items
                     </Button>
-                    <Button color="warning" size="lg" className="buy-icon" style={{marginTop: '0'}}>
-                <span style={{marginRight: '15px'}}>Delivery : </span>
-                <Switch 
-                    defaultValue={false}
-                    offColor="success"
-                    offText={<i className="nc-icon nc-simple-remove" />}
-                    onColor="success"
-                    onText={<i className="nc-icon nc-check-2" />}
-                />
-                <span style={{marginRight: '15px'}}>Express : </span>
-                <Switch 
-                    defaultValue={false}
-                    offColor="success"
-                    offText={<i className="nc-icon nc-simple-remove" />}
-                    onColor="success"
-                    onText={<i className="nc-icon nc-check-2" />}
-                /></Button><br></br>
             </div>
         </>
     )
