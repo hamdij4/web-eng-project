@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from "react";
-import { Button, Form, FormGroup, Label, Input, FormText, Col, Container, Row, Card } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, Col, Container, Row, Card ,InputGroup, InputGroupAddon, InputGroupText} from 'reactstrap';
 import './register.css'
 import axios from 'axios'
 import {Redirect} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserEdit, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 function RegisterScreen() {
     const [formData, setFormData] = useState({
@@ -41,32 +43,58 @@ function RegisterScreen() {
         <>
         <div
         className="page-header section-dark"
-        style={{
-          backgroundImage:
-            "url(" + require("../../assets/img/FrenchFries.jpg") + ")", backgroundSize: "cover"}}>
-                <div className="filter" />
-            <Container style={{backgroundColor:"rgba(0,0,0,0)"}}>
-                <Row>
-                    <Col lg={8} md={6} sm={12} >
-                    <Card>          
-                        <Form >
+        style={{backgroundColor: 'orange'}}>
+                <div className="container-main">
+                  <Container style={{height: '100%'}}>
+                    <Row>
+                      <Col  lg={6} md={6} sm={0}></Col>
+                      <Col lg={6} md={6} sm={12} className="registration">
+                      <Form >
                             <FormGroup className="form-group">
-                                <Label for="username" className="form-label">Nummy</Label>
-                                <Input onChange={handleInputField} type="text" name="username" placeholder="Username" className="form-input"/>
-                                <Input onChange={handleInputField} type="text" name="email" placeholder="E-mail" className="form-input"/>
-                                <Input onChange={handleInputField} type="text" name="telephone" placeholder="Telephone" className="form-input"/>
-                                <Input onChange={handleInputField} type="text" name="address" placeholder="Address" className="form-input"/>
-                                <Input onChange={handleInputField} type="password" name="password" placeholder="Password" className="form-input"/>
-                                <Input onChange={handleInputField} type="password" name="passwordRepeat" placeholder="Repeat password" className="form-input"/>
+                              <Label for="username" className="label"> Username </Label>
+                              <InputGroup className="form-input">
+                                <Input  onChange={handleInputField} type="text" name="username" placeholder="ex. Johnny122" />
+                                <InputGroupAddon addonType="append">
+                                  <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
+                                </InputGroupAddon>
+                              </InputGroup>
+                              <Label for="email" className="label"> E-mail </Label>
+                              <InputGroup className="form-input">
+                                <Input  onChange={handleInputField} type="text" name="email" placeholder="ex. johhny@mymail.net" />
+                                <InputGroupAddon addonType="append">
+                                  <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
+                                </InputGroupAddon>
+                              </InputGroup>
+                              <Label for="telephone" className="label"> Telephone </Label>
+                              <InputGroup className="form-input">
+                                <Input onChange={handleInputField} type="text" name="telephone" placeholder="ex. +387 63 222 333" />
+                                <InputGroupAddon addonType="append">
+                                  <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
+                                </InputGroupAddon>
+                              </InputGroup>
+                              <Label for="address" className="label"> Address </Label>
+                              <InputGroup className="form-input">
+                                <Input  onChange={handleInputField} type="text" name="address" placeholder="ex. Titova 21"/>
+                                <InputGroupAddon addonType="append">
+                                  <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
+                                </InputGroupAddon>
+                              </InputGroup>
+                              <Label for="password" className="label"> Password </Label>
+                              <InputGroup className="form-input">
+                                <Input  onChange={handleInputField} type="password" name="password" placeholder="Make it count" className="form-input"/>
+                                <InputGroupAddon addonType="append">
+                                  <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
+                                </InputGroupAddon>
+                              </InputGroup>
                                 <Button className="btn-round" onClick={register}color="warning" style={{marginTop: "10px", width:"50%"}} type="button" >
                                     Register
                                 </Button>
                             </FormGroup>
                         </Form>
-                    </Card>
-                    </Col>
-                </Row>
-            </Container>
+                      </Col>
+                    </Row>
+                  </Container>
+                </div>
           {finished ?
           (<Redirect to = '/login'/>) : (console.log(""))}
         </div>

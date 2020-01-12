@@ -3,6 +3,8 @@ import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import './login.css'
 import Axios from "axios";
 import {Redirect} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 
 function LoginScreen() {
 
@@ -13,23 +15,24 @@ function LoginScreen() {
     const [loggedIn, setLoggedIn] = useState(false);
 
     const login = async() => {
-        await Axios.post('visitor/login', loginInfo)
+        await Axios.post('/authenticate', loginInfo)
         .then(res => {
             localStorage.setItem('token', res.data.jwt);
+            localStorage.setItem('type', res.data.type)
             setLoggedIn(true);
         })
 
         .catch(error => {
-            console.log("Error loging in")
+            console.log(error)
         })
         .finally(
-            console.log("to add tips")
+            //TODO
         )
     }
     const handleInputField = useCallback(event => {
         setLoginInfo({...loginInfo, [event.target.name] : event.target.value})
-        console.log(loginInfo)
       })
+
     return (
         <>
         <div
@@ -37,11 +40,11 @@ function LoginScreen() {
         style={{
           backgroundImage:
             "url(" + require("../../assets/img/HamburgerLogin.jpg") + ")", backgroundSize: "cover"}}>
-                <div className="filter"/>
-                <div className="form-container" style={{zIndex: "100", backgroundColor: "none"}}>
                 <Form className="form-container">
             <FormGroup>
-              <Label for="username" className="label">Nummy</Label>
+              <Label for="username">
+                  <FontAwesomeIcon  className="icon" icon={faUserCircle}/>
+              </Label>
               <Input onChange={handleInputField} type="text" name="username" placeholder="Username" className="field"
               />
               <Input onChange={handleInputField} type="password" name="password" placeholder="Password" className="field"
@@ -56,7 +59,6 @@ function LoginScreen() {
               (<Redirect to='/home' />)
               : (console.log(""))
           }
-          </div>
         </div>
         </>
     )
