@@ -33,11 +33,11 @@ import {
   Container, Badge
 } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUtensils, faPhoneAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUtensils, faPhoneAlt, faUserCircle, faSignOutAlt, faLongArrowAltUp } from '@fortawesome/free-solid-svg-icons'
  
 function IndexNavbar() {
-  let loggedIn = false;
-  let username = ""
+  let loggedIn = (localStorage.getItem('token') != null);
+
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
@@ -47,11 +47,6 @@ function IndexNavbar() {
   };
 
   React.useEffect(() => {
-    if(localStorage.getItem('token') != null){
-      loggedIn = true;
-      username = localStorage.getItem('user')
-      console.log(localStorage.getItem('token'), loggedIn, username)
-    }
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 0 ||
@@ -71,9 +66,10 @@ function IndexNavbar() {
     return function cleanup() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
-  });
+  }, [(localStorage.getItem('token') != null)]);
 
   return (
+    <>
     <Navbar className={classnames("fixed-top", navbarColor)} expand="lg">
       <Container>
         <div className="navbar-translate">
@@ -138,8 +134,27 @@ function IndexNavbar() {
                 <span>Contact</span>
               </NavLink>
             </NavItem>
-            {loggedIn && username != null ? 
-            (
+            {loggedIn ? 
+            (<><NavItem>
+              <NavLink
+              > 
+                <Link to ="/" className="user-icon">
+                  <Badge color="warning" className="user-badge">
+<FontAwesomeIcon icon={faUserCircle} className="fa-user"/> <span>{ localStorage.getItem('user')}</span> </Badge>
+                </Link>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+              > 
+                <Link to ="/" className="logout-icon" onClick={()=>{
+                  localStorage.clear();
+                }}>
+            <FontAwesomeIcon icon={faSignOutAlt}/>
+                </Link>
+              </NavLink>
+            </NavItem>
+            </>) : (
               <>
               <NavItem>
                 <NavLink
@@ -159,20 +174,12 @@ function IndexNavbar() {
                   Register
                 </Button>
                 </Link>
-              </NavItem> </>): (<><NavItem>
-                <NavLink
-                > 
-                  <Link to ="/" className="user-icon">
-                    <Badge color="warning" className="user-badge">
-<FontAwesomeIcon icon={faUserCircle} className="fa-user"/> <span>{ localStorage.getItem('user')}</span> </Badge>
-                  </Link>
-                </NavLink>
-              </NavItem>
-              </>)}
+              </NavItem> </>)}
           </Nav>
         </Collapse>
       </Container>
     </Navbar>
+    </>
   );
 }
 

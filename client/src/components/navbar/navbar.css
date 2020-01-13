@@ -14,5 +14,16 @@
 .user-badge{
     padding: 10px;
     font-size: 18px;
-    flex: 0 0 auto;
+    margin-top: -10px
+}
+
+.logout-icon{
+    font-size: 22px;
+    color: white !important;
+    margin-top: -10px !important;
+    right: 10%;
+    position: absolute;
+}.logout-icon:hover{
+    font-size: 22px;
+    color: white !important;
 }

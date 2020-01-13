@@ -12,16 +12,13 @@ function OrderTotal() {
     let priceTotal = 0
     const [orderModel, setOrderModel] = useState({
         username: "",
-        telephone: "",
-        content: [],
-        date: "",
-        discount: 0,
         price: 0,
         delivery: false,
         cashier: "",
         driver: "",
         paid: false,
-        serial_no: 0
+        serial_no: 0,
+        order : []
     })
     function getColorAndUpdatePrice(cat, price) {
         priceTotal += price;
