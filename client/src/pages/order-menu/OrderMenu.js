@@ -4,6 +4,7 @@ import { Container, Row, Col, Card } from "reactstrap";
 import OrderSidebar from '../../components/order/order-sidebar/OrderSidebar';
 import OrderMenuComponent from '../../components/order/order-menu/OrderMenu';
 import OrderTotal from '../../components/order/order-total/OrderTotal';
+import IndexNavbar from '../../components/navbar/Navbar';
 
 function OrderMenu() {
     return (
@@ -20,6 +21,7 @@ function OrderMenu() {
             </div>
         </div>*/}
             <div className="view-holder">
+            <IndexNavbar></IndexNavbar>
                 <Container style={{width:"100vw"}}>
                     <Row>
                         <Col lg={12} md={12} sm={12}>

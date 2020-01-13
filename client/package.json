@@ -42,7 +42,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8000",
+  "proxy": "http://localhost:8080",
   "devDependencies": {
     "redux": "^4.0.5"
   }

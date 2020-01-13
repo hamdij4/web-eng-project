@@ -19,8 +19,6 @@ class App extends React.Component {
       <div className="App">
      
       <Router>
-        {this.state.navbarHidden ? null : 
-        <IndexNavbar></IndexNavbar>}
         <Switch>
           <Route path = "/home" component = {LandingPage}/>
           <Route path = "/login" component = {LoginScreen} />

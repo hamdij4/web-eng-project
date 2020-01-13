@@ -5,6 +5,7 @@ import axios from 'axios'
 import {Redirect} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserEdit, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom";
 
 function RegisterScreen() {
     const [formData, setFormData] = useState({
@@ -13,23 +14,28 @@ function RegisterScreen() {
         telephone: "+387 ",
         address: "Address, City, Postal Code",
         password: "Password",
-        password_repeat: "Repeat password"
+        type: 1
     });
+    let formValid = false;
+    let emailValid, usernameValid, passwordValid, phoneValid, addressValid;
     const [finished, setFinished] = useState(false);
     const handleInputField = useCallback(event => {
       setFormData({...formData, [event.target.name] : event.target.value})
-    }, [])
+      validateForm()
+      console.log(formData)
+    })
     const register = async () => {
       let model = {
         username : formData.username,
         order_history: [],
         balance: 0.0,
         email: formData.email,
+        type: formData.type,
         telephone: formData.telephone,
         address: formData.address,
         password: formData.password
       }
-      await axios.post('visitor/register', model)
+      await axios.post('/registration', model)
       .then(res => {
         setFinished(true);
       })
@@ -38,6 +44,26 @@ function RegisterScreen() {
       })
       .finally(
       )
+    }
+    function validateForm(){
+      if(formData.email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i) && formData.email != 'Your email'){
+        emailValid = true;
+      } else emailValid = false;
+      if(formData.password.length > 6 && formData.password != 'Your password'){
+        passwordValid = true;
+      } else passwordValid = false;
+      if(formData.username.length  > 6 && formData.username != 'Your username'){
+        usernameValid = true;
+      } else usernameValid = false;
+      if(formData.telephone.length  >= 9 && formData.telephone != 'Your telephone'){
+        phoneValid = true;
+      } else phoneValid = false;
+      if(formData.address.length  > 7 && formData.address != 'Your address'){
+        addressValid = true;
+      } else addressValid = false;
+      if(emailValid && passwordValid && usernameValid && phoneValid && addressValid){
+        formValid = true;
+      } else formValid = false;
     }
     return (
         <>
@@ -53,42 +79,49 @@ function RegisterScreen() {
                             <FormGroup className="form-group">
                               <Label for="username" className="label"> Username </Label>
                               <InputGroup className="form-input">
-                                <Input  onChange={handleInputField} type="text" name="username" placeholder="ex. Johnny122" />
+                                <Input  onChange={handleInputField} type="text" name="username" placeholder="Your username" />
                                 <InputGroupAddon addonType="append">
                                   <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
                                 </InputGroupAddon>
                               </InputGroup>
                               <Label for="email" className="label"> E-mail </Label>
                               <InputGroup className="form-input">
-                                <Input  onChange={handleInputField} type="text" name="email" placeholder="ex. johhny@mymail.net" />
+                                <Input  onChange={handleInputField} type="text" name="email" placeholder="Your email" />
                                 <InputGroupAddon addonType="append">
                                   <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
                                 </InputGroupAddon>
                               </InputGroup>
                               <Label for="telephone" className="label"> Telephone </Label>
                               <InputGroup className="form-input">
-                                <Input onChange={handleInputField} type="text" name="telephone" placeholder="ex. +387 63 222 333" />
+                                <Input onChange={handleInputField} type="text" name="telephone" placeholder="Your telephone" />
                                 <InputGroupAddon addonType="append">
                                   <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
                                 </InputGroupAddon>
                               </InputGroup>
                               <Label for="address" className="label"> Address </Label>
                               <InputGroup className="form-input">
-                                <Input  onChange={handleInputField} type="text" name="address" placeholder="ex. Titova 21"/>
+                                <Input  onChange={handleInputField} type="text" name="address" placeholder="Your address"/>
                                 <InputGroupAddon addonType="append">
                                   <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
                                 </InputGroupAddon>
                               </InputGroup>
                               <Label for="password" className="label"> Password </Label>
                               <InputGroup className="form-input">
-                                <Input  onChange={handleInputField} type="password" name="password" placeholder="Make it count" className="form-input"/>
+                                <Input  onChange={handleInputField} type="password" name="password" placeholder="Your password" className="form-input"/>
                                 <InputGroupAddon addonType="append">
                                   <InputGroupText><FontAwesomeIcon icon={faCheckCircle}/></InputGroupText>
                                 </InputGroupAddon>
                               </InputGroup>
+                              <Label for="select" className="label"> Account Type </Label>
+                              <Input onChange={handleInputField} type="select" name="type" id="exampleSelect" className="form-input">
+                                <option value="1">Customer</option>
+                                <option value="2">Employee</option>
+                                <option value="3">Manager</option>
+                              </Input>
                                 <Button className="btn-round" onClick={register}color="warning" style={{marginTop: "10px", width:"50%"}} type="button" >
                                     Register
-                                </Button>
+                                </Button> <br></br>
+                                <Link to="/login" className="login-txt">Have an account? Login here</Link>
                             </FormGroup>
                         </Form>
                       </Col>

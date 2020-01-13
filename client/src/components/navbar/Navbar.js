@@ -30,12 +30,14 @@ import {
   NavItem,
   NavLink,
   Nav,
-  Container
+  Container, Badge
 } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUtensils, faPhoneAlt } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUtensils, faPhoneAlt, faUserCircle } from '@fortawesome/free-solid-svg-icons'
  
 function IndexNavbar() {
+  let loggedIn = false;
+  let username = ""
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [navbarCollapse, setNavbarCollapse] = React.useState(false);
 
@@ -45,6 +47,11 @@ function IndexNavbar() {
   };
 
   React.useEffect(() => {
+    if(localStorage.getItem('token') != null){
+      loggedIn = true;
+      username = localStorage.getItem('user')
+      console.log(localStorage.getItem('token'), loggedIn, username)
+    }
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 0 ||
@@ -131,25 +138,37 @@ function IndexNavbar() {
                 <span>Contact</span>
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink
-              > 
-                <Link to ="/login">
-                  <span style={{color: "white", fontWeight : "700", fontSize:"15px"}}>
-                     Login</span>
+            {loggedIn && username != null ? 
+            (
+              <>
+              <NavItem>
+                <NavLink
+                > 
+                  <Link to ="/login">
+                    <span style={{color: "white", fontWeight : "700", fontSize:"15px"}}>
+                       Login</span>
+                  </Link>
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <Link to ="/register">
+                <Button
+                  className="btn-round"
+                  color="warning"
+                >
+                  Register
+                </Button>
                 </Link>
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <Link to ="/register">
-              <Button
-                className="btn-round"
-                color="warning"
-              >
-                Register
-              </Button>
-              </Link>
-            </NavItem>
+              </NavItem> </>): (<><NavItem>
+                <NavLink
+                > 
+                  <Link to ="/" className="user-icon">
+                    <Badge color="warning" className="user-badge">
+<FontAwesomeIcon icon={faUserCircle} className="fa-user"/> <span>{ localStorage.getItem('user')}</span> </Badge>
+                  </Link>
+                </NavLink>
+              </NavItem>
+              </>)}
           </Nav>
         </Collapse>
       </Container>

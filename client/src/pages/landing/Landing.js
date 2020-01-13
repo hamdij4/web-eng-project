@@ -13,6 +13,7 @@ import LandingReviews from '../../components/landing-user-reviews/LandingUserRev
 import LandingGallery from '../../components/landing-gallery/LandingGallery';
 import LandingMenu from '../../components/landing-food-menu/LandingFoodMenu';
 import Footer from '../../components/footer/Footer'
+import IndexNavbar from '../../components/navbar/Navbar';
 
 function LandingPage() {
 
@@ -20,6 +21,7 @@ function LandingPage() {
     return (
         <>
         <header className="App-header">
+        <IndexNavbar></IndexNavbar>
           <IndexHeader></IndexHeader>
           <LandingMenu></LandingMenu>
           <LandingGallery></LandingGallery>

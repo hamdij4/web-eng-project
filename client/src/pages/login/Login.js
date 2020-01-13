@@ -5,6 +5,7 @@ import Axios from "axios";
 import {Redirect} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { Link } from "react-router-dom";
 
 function LoginScreen() {
 
@@ -18,7 +19,8 @@ function LoginScreen() {
         await Axios.post('/authenticate', loginInfo)
         .then(res => {
             localStorage.setItem('token', res.data.jwt);
-            localStorage.setItem('type', res.data.type)
+            localStorage.setItem('type', res.data.type);
+            localStorage.setItem('user', res.data.user)
             setLoggedIn(true);
         })
 
@@ -51,7 +53,7 @@ function LoginScreen() {
               />
               <Button onClick={login} className="btn-round" color="warning" style={{marginTop: "10px", width:"100%"}} type="button" >
                 Login
-        </Button>
+        </Button> <br></br><Link to="/register" className="register-txt" >Need an account? Register here</Link>
             </FormGroup>
           </Form>
           {

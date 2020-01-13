@@ -55,6 +55,41 @@ app.post('/authenticate', (req, res) => {
         }
     )
 })
+app.post('/registration', (req, res) => {
+    let model = {
+        username : req.body.username,
+        order_history: [],
+        balance: 0.0,
+        email: req.body.email,
+        type: req.body.type,
+        telephone: req.body.telephone,
+        address: req.body.address,
+        password: req.body.password
+    }
+    db.user.findOne({email : model.email}, (error, docs) => {
+        if(error) throw error
+        if(docs){
+            console.log(getDate(), "Duplicate email error for ", model.email)
+            res.status(406)
+            res.send({response : 'FAIL', reason: 'email'})
+        } else {
+            db.user.findOne({username : model.username}, (error, docs) => {
+                if(error) throw error
+                if(docs){
+                    console.log(getDate(), "Duplicate username error for ", model.username)
+                    res.status(406)
+                    res.send({response : 'FAIL', reason: 'username'})
+                } else {
+                    db.user.insertOne(model, (error, docs) => {
+                        console.log(getDate(), "New user registered : ", model.username)
+                        res.status(200)
+                        res.send({response: 'OK'})
+                    })
+                }
+            })
+        }
+    })
+})
 
 app.use(express.static(path.join(__dirname, '../client/build')))
 
