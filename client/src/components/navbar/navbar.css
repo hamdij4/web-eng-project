@@ -32,4 +32,13 @@
     .nav-link{
         color: gray !important;
     }
+    .logout-icon{
+        font-size: 30px;
+        color: orange !important;
+        position : absolute;
+        left: 20%;
+    }.logout-icon:hover{
+        font-size: 32px;
+        color: red !important;
+    }
 }
