@@ -33,7 +33,7 @@ import {
   Container, Badge
 } from "reactstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUtensils, faPhoneAlt, faUserCircle, faSignOutAlt, faLongArrowAltUp } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUtensils, faPhoneAlt, faUserCircle, faSignOutAlt, faLongArrowAltUp, faUsersCog } from '@fortawesome/free-solid-svg-icons'
  
 function IndexNavbar() {
   let loggedIn = (localStorage.getItem('token') != null);
@@ -154,6 +154,16 @@ function IndexNavbar() {
                 </Link>
               </NavLink>
             </NavItem>
+            {localStorage.getItem('type') == 3 ?
+            (
+              <NavItem>
+                <NavLink
+                > 
+                  <Link to ="/panel" className="logout-icon" style={{margin: '50px'}} >
+              <FontAwesomeIcon icon={faUsersCog}/>
+                  </Link>
+                </NavLink>
+              </NavItem>) :(null)}
             </>) : (
               <>
               <NavItem>
