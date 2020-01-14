@@ -8,6 +8,7 @@ import axios from 'axios';
 import {addItemToCart} from '../../../redux/actions/index'
 import { useDispatch, useSelector} from 'react-redux'
 import { read } from 'fs';
+import images from '../images'
 
 function OrderMenuComponent() {
     const [menuItems, setMenuItems] = useState([]);
@@ -19,6 +20,7 @@ function OrderMenuComponent() {
         axios.get(query)
             .then(res => {
                 setMenuItems(res.data)
+                console.log(res.data)
             })
             .catch(err => {
                 setIsLoaded(false)
@@ -32,8 +34,8 @@ function OrderMenuComponent() {
 
         <Col lg={4} md={4} sm={4} className="food-col">
             <Card className="food-card" onClick={() => dispatch(addItemToCart(model))}>
-                <CardImg top src={require("../../../assets/img/Hamburger.jpg")} alt="..." />
-                <Badge color="danger" pill className="price-tag">{model.price} KM</Badge>
+                <CardImg top src={getImageUri(model.name)} alt="..." />
+                <Badge style={{backgroundColor : getBgColor(orderType)}}pill className="price-tag">{model.price} KM</Badge>
                 <CardTitle>
                     {model.name}
                 </CardTitle>
@@ -68,7 +70,23 @@ function OrderMenuComponent() {
         }
         return "secondary"
     }
-
+    function getImageUri(name){
+        const imageList = {
+            'Small Doner' : images.smalldoner,
+            'Small Pancakes' : images.smallpancakes,
+            'Large Doner' : images.largedoner,
+            'Large Pancakes' : images.largepancakes,
+            'Small Chicken Sandwich' : images.smallchickensandwich,
+            'Large Chicken Sandwich' : images.largechickensandwich,
+            'Margharita' : images.margharita,
+            'Capricciosa' : images.cappriciosa,
+            'XL Burger' : images.xlburger,
+            'Burger' : images.burger,
+            'Kids Burger' : images.kidsburger,
+            'Kids Doner' : images.kidsdoner
+        }
+        return imageList[name]
+    }
     return (
         <>
             <div className="holder">

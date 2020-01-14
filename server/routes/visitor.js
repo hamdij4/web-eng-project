@@ -47,25 +47,48 @@ module.exports = (router, db, mongojs, jwt, config) => {
     })
 
     router.post('/order/post', (req, res) => {
-        let total = calculatePrice(req.body.content)
         let model = {
             username  : req.body.username,
             telephone : req.body.telephone,
-            content : req.body.content,
-            date : req.body.date,
-            discount : req.body.discount,
-            price : total,
+            order : req.body.order,
+            date : getDate(),
+            discount : req.body.discount || 0,
+            price : req.body.price,
             delivery: req.body.delivery,
             cashier: getCashier(),
             driver : getDriver(),
-            paid : req.body.paid
+            paid : req.body.paid || false,
+            serial_no: 'add_rand_later',
+            registered : true
         }
-        db.order.insertOne(model, (error, docs) => {
-            if (error) {
-                throw error;
-            }
-            res.json(docs);
-        });
+        if(req.body.registered == false){
+            model.registered = false;
+            db.order.insertOne(model, (error, docs) => {
+                if (error) {
+                    throw error;
+                }
+                console.log(getDate(), "New order added for ", model.username)
+                res.status(200)
+                res.send({response: 'OK'})
+            });
+        }else {
+            db.user.findOne({username : req.body.username}, (error, docs) => {
+                if(error){
+                    console.log(getDate(), "Error finding user in orders : ", model.username)
+                }
+                if(docs){
+                    model.telephone = docs.telephone;
+                    db.order.insertOne(model, (error, docs) => {
+                        if (error) {
+                            throw error;
+                        }
+                        console.log(getDate(), "New order added for ", model.username)
+                        res.status(200)
+                        res.send({response: 'OK'})
+                    });
+                }
+            })
+        }
         /*let auth = req.get('Authorization')
         if(auth){
             jwt.verify(auth,
@@ -101,57 +124,6 @@ module.exports = (router, db, mongojs, jwt, config) => {
         }*/
     });
 
-    router.post('/register', (req, res) => {
-        if(req){
-
-            var model = req.body;
-
-            db.user.insertOne(model, (error, docs) => {
-                if(error) throw error;
-                res.send({response: "User created!"})
-            });
-        }
-        else{
-            res.status(400)
-            res.send('Invalid input')
-        }
-    });
-
-    router.post('/login', (req, res) => {
-        if(req){
-            var model = req.body;
-
-            db.user.findOne({$and:[{username : model.username}, {password : model.password}]}, (error, docs) => {
-                if(error) throw error;
-                let token = jwt.sign({
-                    username :req.body.username, 
-                    type: "user", 
-                    exp: Math.floor(Date.now() / 1000) + 3600 
-                }, process.env.JWT_SECRET || config.JWT_SECRET)
-                res.send({response: "User logged in!", jwt: token});
-            })
-        } else {
-            res.status(400)
-            res.send('Invalid data')
-        }
-    })
-
-
-    function calculatePrice(order){
-        let price = 0;
-        order.forEach(orderEl => {
-            console.log(orderEl)
-            db.food.find({name : orderEl}, (error, docs) => {
-                if(error) return -401
-                else {
-                    console.log(docs[0].price)
-                    price += docs[0].price
-                }
-            })
-        });
-        console.log(price)
-        return price;
-    }
     function getCashier(){
         return "Mensur"
     }
@@ -159,4 +131,9 @@ module.exports = (router, db, mongojs, jwt, config) => {
         return "Amir"
     }
 
+}
+
+getDate = () => {
+    let date = new Date(Date.now())
+    return date
 }

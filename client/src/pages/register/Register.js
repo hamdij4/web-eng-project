@@ -22,7 +22,6 @@ function RegisterScreen() {
     const handleInputField = useCallback(event => {
       setFormData({...formData, [event.target.name] : event.target.value})
       validateForm()
-      console.log(formData)
     })
     const register = async () => {
       let model = {
