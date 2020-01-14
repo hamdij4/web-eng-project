@@ -1,4 +1,4 @@
-.view-holder{
+.view-holder-desktop{
     position: relative;
     padding-top: 100px;
     justify-content: center;
@@ -6,11 +6,22 @@
     height: 100vh;
     width: 100vw;
     background-image: url('../../assets/img/HamburgerLogin.jpg');
+    display: none;
 }
 
 @media screen and(max-width: 600px){
     .view-holder {
         padding-top: 0px;
+    }
+}
+@media (max-width:999px) {
+    .view-holder-mobile{
+        display: block
+    }
+}
+@media (min-width:1000px) {
+    .view-holder-desktop{
+        display: block
     }
 }
 

@@ -33,8 +33,8 @@ function OrderMenuComponent() {
     const menuCards = menuItems.map((model) =>
 
         <Col lg={4} md={4} sm={4} className="food-col">
-            <Card className="food-card" onClick={() => dispatch(addItemToCart(model))}>
-                <CardImg top src={getImageUri(model.name)} alt="..." />
+            <Card className="food-card-mobile" onClick={() => dispatch(addItemToCart(model))}>
+                <CardImg className="card-img-mobile" top src={getImageUri(model.name)} alt="..." />
                 <Badge style={{backgroundColor : getBgColor(orderType)}}pill className="price-tag">{model.price} KM</Badge>
                 <CardTitle>
                     {model.name}

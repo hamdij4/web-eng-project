@@ -27,3 +27,9 @@
     font-size: 22px;
     color: white !important;
 }
+
+@media (max-width:999px) {
+    .nav-link{
+        color: gray !important;
+    }
+}

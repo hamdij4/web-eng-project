@@ -5,22 +5,11 @@ import OrderSidebar from '../../components/order/order-sidebar/OrderSidebar';
 import OrderMenuComponent from '../../components/order/order-menu/OrderMenu';
 import OrderTotal from '../../components/order/order-total/OrderTotal';
 import IndexNavbar from '../../components/navbar/Navbar';
-
+import OrderMobile from '../../components/order/order-mobile/OrderMobile'
 function OrderMenu() {
     return (
         <>
-            {/*<div className="view-holder">
-            <div className="order-sidebar">
-            <OrderSidebar></OrderSidebar>
-            </div>
-            <div className="order-picker-holder">
-            <OrderMenuComponent></OrderMenuComponent>
-            </div>
-            <div className="order-total-holder">
-            <OrderTotal></OrderTotal>
-            </div>
-        </div>*/}
-            <div className="view-holder">
+            <div className="view-holder-desktop">
             <IndexNavbar></IndexNavbar>
                 <Container style={{width:"100vw"}}>
                     <Row>
@@ -42,6 +31,10 @@ function OrderMenu() {
                         </Col>
                     </Row>
                 </Container>
+            </div>
+            <div className="view-holder-mobile">
+                <IndexNavbar></IndexNavbar>
+                <OrderMobile></OrderMobile>
             </div>
         </>
     )
