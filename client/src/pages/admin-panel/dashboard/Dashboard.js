@@ -16,9 +16,10 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
+import React, { useState, useEffect } from "react";
 // react plugin used to create charts
 import { Line, Pie } from "react-chartjs-2";
+import axios from 'axios'
 // reactstrap components
 import {
   Card,
@@ -35,11 +36,30 @@ import {
   dashboardEmailStatisticsChart,
   dashboardNASDAQChart
 } from "../vars/charts.js";
+import { Redirect } from "react-router-dom";
 
-class Dashboard extends React.Component {
-  render() {
+function Dashboard() {
+
+  const [topSellingItem, setTopSellingItem] = useState({name: 'Kerfunkel'})
+  const [auth, setAuth] = useState(false)
+    useEffect(() => {
+        axios.get('admin/topselling', {headers: {Auth : localStorage.getItem('token')}})
+        .then(res => {
+          setTopSellingItem(res.data)
+          setAuth(false);
+        })
+        .catch(error => {
+          setAuth(true);
+            console.log("Error: ", error, auth)
+        })
+        .finally(
+            //TODO
+        )
+      }, [auth])
+
     return (
       <>
+      {auth ? (<Redirect to="/home"/>):(console.log("allgood"))}
         <div className="content-admin">
           <Row>
             <Col lg="3" md="6" sm="6">
@@ -53,7 +73,7 @@ class Dashboard extends React.Component {
                     </Col>
                     <Col md="8" xs="7">
                       <div className="numbers">
-                        <p className="card-category">Top selling item </p>
+                        <p className="card-category">{topSellingItem.name}</p>
                         <CardTitle tag="p">150GB</CardTitle>
                         <p />
                       </div>
@@ -229,6 +249,6 @@ class Dashboard extends React.Component {
       </>
     );
   }
-}
+
 
 export default Dashboard;

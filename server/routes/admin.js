@@ -1,12 +1,12 @@
 //TODO: Implement admin routes
 
-module.exports = (router, db, jwt) => {
+module.exports = (router, db, mongojs, jwt, config) => {
 
     router.use((req, res, next) =>{
 
-        let auth = req.get('Auth')
+        let Auth = req.get('Auth')
         if(Auth){
-            jwt.verify(Auth, processs.env.JWT_SECRET || config.JWT_SECRET , 
+            jwt.verify(Auth,config.JWT_SECRET  || process.env.JWT_SECRET , 
                 (error, decoded) => {
                     if(error){
                         console.log(getDate(), "Error decoding JWT token for /admin")
@@ -14,10 +14,10 @@ module.exports = (router, db, jwt) => {
                         res.send({response: 'INVALID'})
                     } else {
                         let type = decoded.type
-                        if(type === 3){
+                        if(type == 3){
                             next()
                         } else {
-                            console.log(getDate(), "Invalid token provided by ", decoded.username, " from ", req.ip)
+                            console.log(getDate(), "Invalid token provided by ", decoded.username, " from ", req.ip, "more: ", decoded, error, decoded.type)
                             res.status(401)
                             res.send({response : 'ACCESS'})
                         }
@@ -29,7 +29,10 @@ module.exports = (router, db, jwt) => {
         }
 
     })
-
+    router.get('/topselling', (req, res) => {
+        res.status(200)
+        res.send({name : "Large Hamburger"})
+    })
 }
 
 getDate = () => {
