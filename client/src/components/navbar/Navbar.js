@@ -159,7 +159,7 @@ function IndexNavbar() {
               <NavItem>
                 <NavLink
                 > 
-                  <Link to ="/panel" className="logout-icon" style={{margin: '50px'}} >
+                  <Link to ="/admin-panel" className="logout-icon" style={{margin: '50px'}} >
               <FontAwesomeIcon icon={faUsersCog}/>
                   </Link>
                 </NavLink>

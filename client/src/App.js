@@ -8,6 +8,7 @@ import {BrowserRouter as Router,
         Switch, Route} from 'react-router-dom'
 import LandingPage from './pages/landing/Landing';
 import OrderMenu from './pages/order-menu/OrderMenu';
+import AdminPanel from './pages/admin-panel/admin-view';
 
 
 class App extends React.Component {
@@ -24,6 +25,7 @@ class App extends React.Component {
           <Route path = "/login" component = {LoginScreen} />
           <Route path = "/register" component = {RegisterScreen} />
           <Route path = "/order" component = {OrderMenu}/>
+          <Route path = "/admin-panel" component = {AdminPanel}/>
           <Route path = "*" component = {LandingPage}/>
         </Switch>
       </Router>

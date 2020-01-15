@@ -6,7 +6,6 @@ module.exports = (router, db, mongojs, jwt, config) => {
                 throw error;
             }
             res.json(docs);
-            console.log(docs)
         });
     });
 
@@ -41,8 +40,8 @@ module.exports = (router, db, mongojs, jwt, config) => {
                     console.log("Error at FoodMenu/:type", error)
                     throw error;
                 }
-                console.log(docs)
                 res.json(docs)
+                res.status(200)
             })
     })
 
