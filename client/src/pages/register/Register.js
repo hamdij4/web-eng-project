@@ -10,8 +10,8 @@ import { Link } from "react-router-dom";
 function RegisterScreen() {
   const [formData, setFormData] = useState({
     username: "Username",
-    email: "E-mail",
-    telephone: "+387 ",
+    email: "E-mail@mail.com",
+    telephone: "+387534543 ",
     address: "Address, City, Postal Code",
     password: "Password",
     type: 1
@@ -88,7 +88,7 @@ function RegisterScreen() {
         }
         break;
       case 'password':
-        if (formData.password.length < 7) {
+        if (formData.password.length < 6) {
           formValid = false;
           return 'red'
         } else {
@@ -97,7 +97,7 @@ function RegisterScreen() {
         }
         break;
       case 'email':
-        if (!validEmailRegex.test(formData.email)) {
+        if (!validEmailRegex.test(formData.email) && formData.email != "") {
           formValid = false;
           openEmailValidator = false;
           return 'red'
@@ -161,7 +161,7 @@ function RegisterScreen() {
                         <InputGroupText id="validatorIcon2"><FontAwesomeIcon icon={faCheckCircle} style={{ color: getValidator('email') }} /></InputGroupText>
                         <Popover placement="bottom" isOpen={openEmailValidator} target="validatorIcon2" toggle={true}>
                           <PopoverBody>
-                            {errors.username}
+                            {errors.email}
                           </PopoverBody>
                         </Popover>
                       </InputGroupAddon>
@@ -173,7 +173,7 @@ function RegisterScreen() {
                         <InputGroupText id="validatorIcon3"><FontAwesomeIcon icon={faCheckCircle} style={{ color: getValidator('telephone') }} /></InputGroupText>
                         <Popover placement="bottom" isOpen={false} target="validatorIcon3" toggle={true}>
                           <PopoverBody>
-                            {errors.username}
+                            {errors.telephone}
                           </PopoverBody>
                         </Popover>
                       </InputGroupAddon>
@@ -185,7 +185,7 @@ function RegisterScreen() {
                         <InputGroupText id="validatorIcon4"><FontAwesomeIcon icon={faCheckCircle} style={{ color: getValidator('address') }} /></InputGroupText>
                         <Popover placement="bottom" isOpen={getValidator('address') == 'red'} target="validatorIcon4" toggle={true}>
                           <PopoverBody>
-                            {errors.username}
+                            {errors.address}
                           </PopoverBody>
                         </Popover>
                       </InputGroupAddon>
@@ -197,7 +197,7 @@ function RegisterScreen() {
                         <InputGroupText id="validatorIcon5"><FontAwesomeIcon icon={faCheckCircle} style={{ color: getValidator('password') }} /></InputGroupText>
                         <Popover placement="bottom" isOpen={getValidator('password') == 'red'} target="validatorIcon5" toggle={true}>
                           <PopoverBody>
-                            {errors.username}
+                            {errors.password}
                           </PopoverBody>
                         </Popover>
                       </InputGroupAddon>

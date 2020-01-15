@@ -8,6 +8,9 @@
     background-image: url('../../assets/img/HamburgerLogin.jpg');
     display: none;
 }
+.view-holder-mobile{
+    display: none;
+}
 
 @media screen and(max-width: 600px){
     .view-holder {
