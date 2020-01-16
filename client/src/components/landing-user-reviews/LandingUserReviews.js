@@ -14,7 +14,7 @@ function LandingReviews() {
                 <h2 style={{ marginBottom: "75px" }}>What they say about us</h2>
                 <Container>
                     <Row >
-                        <Col xs={12} sm={12} lg={4} md={4} style={{marginBottom: "15px"}}>
+                        <Col xs={12} sm={12} lg={4} md={4} style={{ marginBottom: "15px" }}>
                             <Card className="review-card">
                                 <CardImg top src={require("../../assets/img/DefaultProfile1.jpg")} alt="..." />
                                 <CardTitle>
@@ -25,7 +25,7 @@ function LandingReviews() {
                                 </CardBody>
                             </Card>
                         </Col>
-                        <Col xs={12} sm={12} lg={4} md={4} style={{marginBottom: "15px"}}>
+                        <Col xs={12} sm={12} lg={4} md={4} style={{ marginBottom: "15px" }}>
                             <Card className="review-card" >
                                 <CardImg top src={require("../../assets/img/DefaultProfile2.jpg")} alt="..." />
                                 <CardTitle>
@@ -36,7 +36,7 @@ function LandingReviews() {
                                 </CardBody>
                             </Card>
                         </Col>
-                        <Col xs={12} sm={12} lg={4} md={4}  style={{marginBottom: "15px"}}>
+                        <Col xs={12} sm={12} lg={4} md={4} style={{ marginBottom: "15px" }}>
                             <Card className="review-card">
                                 <CardImg top src={require("../../assets/img/DefaultProfile1.jpg")} alt="..." />
                                 <CardTitle>

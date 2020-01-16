@@ -2,12 +2,12 @@ import React, { useEffect, useState, useCallback } from 'react'
 import './order-total.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { Button, Badge } from 'reactstrap'
+import { Button } from 'reactstrap'
 import Switch from 'react-bootstrap-switch';
 import store from "../../../redux/store/index"
-import { addItemToCart, removeItemFromCart } from "../../../redux/actions/index"
+import { removeItemFromCart } from "../../../redux/actions/index"
 import axios from 'axios'
-import { Modal, ModalHeader, ModalBody, ModalFooter, FormText, InputGroup, InputGroupAddon, InputGroupText, Label, Input } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, Label, Input } from 'reactstrap';
 
 import { useDispatch, useSelector } from "react-redux";
 function OrderTotal() {
@@ -124,7 +124,7 @@ function OrderTotal() {
                             orderModel.telephone = formData.telephone
                         }
                         submitOrder()
-
+                        setModal(false);
                         console.log(orderModel)
                     }}>BUY NOW</Button>
                     <br></br><span style={{ color: 'orange' }}>Our driver will call your phone number when he arrives</span>

@@ -1,21 +1,18 @@
 import './order-mobile.css'
 import React, { useEffect, useState, useCallback } from "react";
 import { Container, Col, Row } from 'reactstrap'
-import { Button, Card, CardImg, CardBody, CardTitle, CardText, Badge, CardImgOverlay, Spinner } from 'reactstrap';
-import { connect } from 'react-redux'
-import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import { Button, Card, CardImg, CardBody, CardTitle, CardText, Badge } from 'reactstrap';
 import axios from 'axios';
-import {addItemToCart} from '../../../redux/actions/index'
-import {removeItemFromCart} from '../../../redux/actions/index'
-import { useDispatch, useSelector} from 'react-redux'
-import { read } from 'fs';
+import { addItemToCart } from '../../../redux/actions/index'
+import { removeItemFromCart } from '../../../redux/actions/index'
+import { useDispatch, useSelector } from 'react-redux'
 import images from '../images'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart, faTrash, faHamburger, faPizzaSlice, faHotdog, faPepperHot, faIceCream } from '@fortawesome/free-solid-svg-icons';
-import {changeOrderType} from '../../../redux/actions/index'
+import { changeOrderType } from '../../../redux/actions/index'
 import Switch from 'react-bootstrap-switch';
-import { Modal, ModalHeader, ModalBody, ModalFooter, FormText, InputGroup, InputGroupAddon, InputGroupText, Label, Input } from 'reactstrap';
-function OrderMobile(){
+import { Modal, ModalHeader, ModalBody, Label, Input } from 'reactstrap';
+function OrderMobile() {
     const [menuItems, setMenuItems] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch()
@@ -40,7 +37,7 @@ function OrderMobile(){
         <Col lg={4} md={4} sm={4} className="food-col">
             <Card className="food-card" onClick={() => dispatch(addItemToCart(model))}>
                 <CardImg top src={getImageUri(model.name)} alt="..." />
-                <Badge style={{backgroundColor : getBgColor(orderType)}}pill className="price-tag">{model.price} KM</Badge>
+                <Badge style={{ backgroundColor: getBgColor(orderType) }} pill className="price-tag">{model.price} KM</Badge>
                 <CardTitle>
                     {model.name}
                 </CardTitle>
@@ -60,8 +57,8 @@ function OrderMobile(){
         });
         return model;
     }
-    function getBgColor(type){
-        switch(type){
+    function getBgColor(type) {
+        switch (type) {
             case "sweets":
                 return '#51cbce'
             case "doner":
@@ -70,25 +67,25 @@ function OrderMobile(){
                 return '#fbc658'
             case "pizza":
                 return '#f5593d'
-            case "sandwich": 
+            case "sandwich":
                 return '#f5593d'
         }
         return "secondary"
     }
-    function getImageUri(name){
+    function getImageUri(name) {
         const imageList = {
-            'Small Doner' : images.smalldoner,
-            'Small Pancakes' : images.smallpancakes,
-            'Large Doner' : images.largedoner,
-            'Large Pancakes' : images.largepancakes,
-            'Small Chicken Sandwich' : images.smallchickensandwich,
-            'Large Chicken Sandwich' : images.largechickensandwich,
-            'Margharita' : images.margharita,
-            'Capricciosa' : images.cappriciosa,
-            'XL Burger' : images.xlburger,
-            'Burger' : images.burger,
-            'Kids Burger' : images.kidsburger,
-            'Kids Doner' : images.kidsdoner
+            'Small Doner': images.smalldoner,
+            'Small Pancakes': images.smallpancakes,
+            'Large Doner': images.largedoner,
+            'Large Pancakes': images.largepancakes,
+            'Small Chicken Sandwich': images.smallchickensandwich,
+            'Large Chicken Sandwich': images.largechickensandwich,
+            'Margharita': images.margharita,
+            'Capricciosa': images.cappriciosa,
+            'XL Burger': images.xlburger,
+            'Burger': images.burger,
+            'Kids Burger': images.kidsburger,
+            'Kids Doner': images.kidsdoner
         }
         return imageList[name]
     } let priceTotal = 0
@@ -149,92 +146,92 @@ function OrderMobile(){
     )
     const modalItems = orderList.map((itemModel) =>
         <>
-            
+
             <Button color={getColorAndUpdatePrice(itemModel.category, itemModel.price)} className="order-item"
                 onClick={() => { dispatch(removeItemFromCart(itemModel)) }}> {itemModel.name}
                 <FontAwesomeIcon className="remove-icon" icon={faTrash}></FontAwesomeIcon></Button><br></br>  </>
     )
     return (
-        <> 
-        <div className="view-holder">
-            <div className="category-select">
-                <Container style={{marginTop: '10px'}}>
-                    <Row>
-            <Button color="warning" className="button"
-            onClick={()=> {
-                dispatch(changeOrderType('hamburger'))
-            }}><FontAwesomeIcon icon={faHamburger} className="fa-icon"/></Button>
-            <Button color="danger" className="button"
-            onClick={()=> {
-                dispatch(changeOrderType('pizza'))
-            }}><FontAwesomeIcon icon={faPizzaSlice} className="fa-icon"/></Button>
-            <Button color="warning" className="button"
-            onClick={()=> {
-                dispatch(changeOrderType('doner'))
-            }}><FontAwesomeIcon icon={faPepperHot} className="fa-icon"/></Button>
-            <Button color="danger" className="button"
-            onClick={()=> {
-                dispatch(changeOrderType('sandwich'))
-            }}><FontAwesomeIcon icon={faHotdog} className="fa-icon"/></Button>
-            <Button color="primary" className="button"
-            onClick={()=> {
-                dispatch(changeOrderType('sweets'))
-            }}><FontAwesomeIcon icon={faIceCream} className="fa-icon"/></Button>
-            </Row>
-                </Container>
-            </div>
-            <div className="menu-holder-mobile">
-            {menuCards}
-            </div>
-            <div className="purchase-holder">
-                <Button color="danger" size="lg" className="buy-icon" onClick={() => {
-                    orderModel.order = orderList
-                    orderModel.username = localStorage.getItem('user')
-                    orderModel.price = priceTotal;
-                    toggle()
-                }} style={{fontSize :'20px'}}>
-                    <FontAwesomeIcon icon={faShoppingCart} /> {orderList.length} Items
+        <>
+            <div className="view-holder">
+                <div className="category-select">
+                    <Container style={{ marginTop: '10px' }}>
+                        <Row>
+                            <Button color="warning" className="button"
+                                onClick={() => {
+                                    dispatch(changeOrderType('hamburger'))
+                                }}><FontAwesomeIcon icon={faHamburger} className="fa-icon" /></Button>
+                            <Button color="danger" className="button"
+                                onClick={() => {
+                                    dispatch(changeOrderType('pizza'))
+                                }}><FontAwesomeIcon icon={faPizzaSlice} className="fa-icon" /></Button>
+                            <Button color="warning" className="button"
+                                onClick={() => {
+                                    dispatch(changeOrderType('doner'))
+                                }}><FontAwesomeIcon icon={faPepperHot} className="fa-icon" /></Button>
+                            <Button color="danger" className="button"
+                                onClick={() => {
+                                    dispatch(changeOrderType('sandwich'))
+                                }}><FontAwesomeIcon icon={faHotdog} className="fa-icon" /></Button>
+                            <Button color="primary" className="button"
+                                onClick={() => {
+                                    dispatch(changeOrderType('sweets'))
+                                }}><FontAwesomeIcon icon={faIceCream} className="fa-icon" /></Button>
+                        </Row>
+                    </Container>
+                </div>
+                <div className="menu-holder-mobile">
+                    {menuCards}
+                </div>
+                <div className="purchase-holder">
+                    <Button color="danger" size="lg" className="buy-icon" onClick={() => {
+                        orderModel.order = orderList
+                        orderModel.username = localStorage.getItem('user')
+                        orderModel.price = priceTotal;
+                        toggle()
+                    }} style={{ fontSize: '20px' }}>
+                        <FontAwesomeIcon icon={faShoppingCart} /> {orderList.length} Items
                     </Button>
+                </div>
             </div>
-        </div>
 
-<Modal isOpen={modal} toggle={toggle} className='order-modal'>
-    <ModalHeader toggle={toggle}><h2>Your Order</h2></ModalHeader>
-    <ModalBody className="modal-body">
-        <span><h4>Your order of {orderList.length} items : <br></br></h4></span>
-        {modalItems}
-        <span><h4 style={{ marginBottom: '15px' }}>Delivery specifics: <br></br></h4></span>
-        <div className="delivery-options">
-            <h6>Car delivery: <Switch onChange={() => { orderModel.delivery = !orderModel.delivery }}
-                onText='YES' offText='NO' checked={orderModel.delivery}
-            /><br></br><span style={{ color: 'lightgray' }}> Only for orders 10KM +</span> </h6>
-            <h6>Express delivery: <Switch onChange={() => { orderModel.delivery = !orderModel.delivery }}
-                onText='YES' offText='NO' checked={orderModel.delivery}
-            /><br></br><span style={{ color: 'lightgray' }}> +2KM on total price</span> </h6>
-        </div>
-        <div>
-            <h4>Total price:</h4>
-            <span className="modal-total">{priceTotal} KM</span>
-        </div>
-        {localStorage.getItem('user') == null ? (<div className="unregistered-info">
-            <Label for="username">Name and Surname</Label>
-            <Input className="modal-input" onChange={handleInputField} type="text" name="username" placeholder="John Smith" />
-            <Label for="username">Telephone Number</Label>
-            <Input className="modal-input" onChange={handleInputField} type="text" name="telephone" placeholder="+387 ..." />
-        </div>) : (null)}
-        <Button color="danger" style={{marginBottom:'10px'}} className="buy-icon" onClick={() => {
+            <Modal isOpen={modal} toggle={toggle} className='order-modal'>
+                <ModalHeader toggle={toggle}><h2>Your Order</h2></ModalHeader>
+                <ModalBody className="modal-body">
+                    <span><h4>Your order of {orderList.length} items : <br></br></h4></span>
+                    {modalItems}
+                    <span><h4 style={{ marginBottom: '15px' }}>Delivery specifics: <br></br></h4></span>
+                    <div className="delivery-options">
+                        <h6>Car delivery: <Switch onChange={() => { orderModel.delivery = !orderModel.delivery }}
+                            onText='YES' offText='NO' checked={orderModel.delivery}
+                        /><br></br><span style={{ color: 'lightgray' }}> Only for orders 10KM +</span> </h6>
+                        <h6>Express delivery: <Switch onChange={() => { orderModel.delivery = !orderModel.delivery }}
+                            onText='YES' offText='NO' checked={orderModel.delivery}
+                        /><br></br><span style={{ color: 'lightgray' }}> +2KM on total price</span> </h6>
+                    </div>
+                    <div>
+                        <h4>Total price:</h4>
+                        <span className="modal-total">{priceTotal} KM</span>
+                    </div>
+                    {localStorage.getItem('user') == null ? (<div className="unregistered-info">
+                        <Label for="username">Name and Surname</Label>
+                        <Input className="modal-input" onChange={handleInputField} type="text" name="username" placeholder="John Smith" />
+                        <Label for="username">Telephone Number</Label>
+                        <Input className="modal-input" onChange={handleInputField} type="text" name="telephone" placeholder="+387 ..." />
+                    </div>) : (null)}
+                    <Button color="danger" style={{ marginBottom: '10px' }} className="buy-icon" onClick={() => {
 
-            if (orderModel.registered == false) {
-                orderModel.username = formData.username
-                orderModel.telephone = formData.telephone
-            }
-            submitOrder()
+                        if (orderModel.registered == false) {
+                            orderModel.username = formData.username
+                            orderModel.telephone = formData.telephone
+                        }
+                        submitOrder()
 
-            console.log(orderModel)
-        }}>BUY NOW</Button>
-        <br></br><span style={{ color: 'orange' }}>Our driver will call your phone number when he arrives</span>
-    </ModalBody>
-</Modal>
+                        console.log(orderModel)
+                    }}>BUY NOW</Button>
+                    <br></br><span style={{ color: 'orange' }}>Our driver will call your phone number when he arrives</span>
+                </ModalBody>
+            </Modal>
         </>
     )
 }

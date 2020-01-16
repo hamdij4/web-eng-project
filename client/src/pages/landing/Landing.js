@@ -1,13 +1,5 @@
 
 import React from "react";
-import { Badge } from 'reactstrap';
-import {
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Button
-} from "reactstrap";
 import IndexHeader from '../../components/header/Header';
 import LandingReviews from '../../components/landing-user-reviews/LandingUserReviews';
 import LandingGallery from '../../components/landing-gallery/LandingGallery';

@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from "react";
-import { Button, Form, FormGroup, Label, Input, Popover, PopoverHeader, PopoverBody, Col, Container, Row, Card, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Popover, PopoverBody, Col, Container, Row, Card, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
 import './register.css'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserEdit, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "react-router-dom";
 
 function RegisterScreen() {
@@ -103,7 +103,7 @@ function RegisterScreen() {
           return 'red'
         } else {
           formValid = true;
-          openEmailValidator= false;
+          openEmailValidator = false;
           return 'white'
         }
         break;

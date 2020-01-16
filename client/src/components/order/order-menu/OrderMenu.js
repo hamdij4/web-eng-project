@@ -1,13 +1,12 @@
 import './order-menu.css'
 import React, { useEffect, useState } from "react";
 import { Container, Col, Row } from 'reactstrap'
-import { Card, CardImg, CardBody, CardTitle, CardText, Badge, CardImgOverlay, Spinner } from 'reactstrap';
+import { Card, CardImg, CardBody, CardTitle, CardText, Badge } from 'reactstrap';
 import { connect } from 'react-redux'
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import axios from 'axios';
-import {addItemToCart} from '../../../redux/actions/index'
-import { useDispatch, useSelector} from 'react-redux'
-import { read } from 'fs';
+import { addItemToCart } from '../../../redux/actions/index'
+import { useDispatch, useSelector } from 'react-redux'
 import images from '../images'
 
 function OrderMenuComponent() {
@@ -35,7 +34,7 @@ function OrderMenuComponent() {
         <Col lg={4} md={4} sm={4} className="food-col">
             <Card className="food-card-mobile" onClick={() => dispatch(addItemToCart(model))}>
                 <CardImg className="card-img-mobile" top src={getImageUri(model.name)} alt="..." />
-                <Badge style={{backgroundColor : getBgColor(orderType)}}pill className="price-tag">{model.price} KM</Badge>
+                <Badge style={{ backgroundColor: getBgColor(orderType) }} pill className="price-tag">{model.price} KM</Badge>
                 <CardTitle>
                     {model.name}
                 </CardTitle>
@@ -55,8 +54,8 @@ function OrderMenuComponent() {
         });
         return model;
     }
-    function getBgColor(type){
-        switch(type){
+    function getBgColor(type) {
+        switch (type) {
             case "sweets":
                 return '#51cbce'
             case "doner":
@@ -65,25 +64,25 @@ function OrderMenuComponent() {
                 return '#fbc658'
             case "pizza":
                 return '#f5593d'
-            case "sandwich": 
+            case "sandwich":
                 return '#f5593d'
         }
         return "secondary"
     }
-    function getImageUri(name){
+    function getImageUri(name) {
         const imageList = {
-            'Small Doner' : images.smalldoner,
-            'Small Pancakes' : images.smallpancakes,
-            'Large Doner' : images.largedoner,
-            'Large Pancakes' : images.largepancakes,
-            'Small Chicken Sandwich' : images.smallchickensandwich,
-            'Large Chicken Sandwich' : images.largechickensandwich,
-            'Margharita' : images.margharita,
-            'Capricciosa' : images.cappriciosa,
-            'XL Burger' : images.xlburger,
-            'Burger' : images.burger,
-            'Kids Burger' : images.kidsburger,
-            'Kids Doner' : images.kidsdoner
+            'Small Doner': images.smalldoner,
+            'Small Pancakes': images.smallpancakes,
+            'Large Doner': images.largedoner,
+            'Large Pancakes': images.largepancakes,
+            'Small Chicken Sandwich': images.smallchickensandwich,
+            'Large Chicken Sandwich': images.largechickensandwich,
+            'Margharita': images.margharita,
+            'Capricciosa': images.cappriciosa,
+            'XL Burger': images.xlburger,
+            'Burger': images.burger,
+            'Kids Burger': images.kidsburger,
+            'Kids Doner': images.kidsdoner
         }
         return imageList[name]
     }
@@ -91,7 +90,7 @@ function OrderMenuComponent() {
         <>
             <div className="holder">
                 <div className="title">
-                    <h2 className="order-title" style={{backgroundColor : getBgColor(orderType)}}>
+                    <h2 className="order-title" style={{ backgroundColor: getBgColor(orderType) }}>
                         {orderType}
                     </h2>
                 </div>
@@ -144,5 +143,5 @@ function OrderMenuComponent() {
 
 export default connect(
     null,
-    {addItemToCart}
+    { addItemToCart }
 )(OrderMenuComponent);
